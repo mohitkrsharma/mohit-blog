@@ -1,10 +1,21 @@
-.login-div{
-  display: flex;
-  justfiy-content: centre;
-  align-items: center;
-}
 .main-nav{
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+  background-color: #000000;
+}
+.blog-website-name{
+  font-size: 3rem;
+  font-weight:900;
+  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+}
+.person{
+  color: #ffffff;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+.login{
+  color: #ffffff;
+  vertical-align: middle;
 }

@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+/* Import Bootstrap */
+@use 'bootstrap/scss/bootstrap' as *;
 
+/* Import Playfair Display font */
+@import '@fontsource/playfair-display/400.css';
+@import '@fontsource/playfair-display/500.css';
+@import '@fontsource/playfair-display/600.css';
+@import '@fontsource/playfair-display/700.css';
+
+/* Import Lora font */
+@import '@fontsource/lora/400.css';
+@import '@fontsource/lora/500.css';
+@import '@fontsource/lora/600.css';
+@import '@fontsource/lora/700.css';
 /* Import Angular Material theme */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
@@ -7,5 +20,14 @@
 @import 'material-icons/iconfont/material-icons.css';
 
 /* Global styles */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  font-size: 62.5%; /* Sets 1rem = 10px (10px/16px = 0.625 or 62.5%) */
+}
+body {
+  font-size: 1.6rem; /* Reset body text to 16px equivalent (1.6rem = 16px) */
+  margin: 0; font-family: 'Lora', serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
