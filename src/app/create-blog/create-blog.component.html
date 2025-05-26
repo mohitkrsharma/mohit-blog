@@ -1,10 +1,30 @@
 <div class="container mt-4">
-  <div class="row justify-content-center">
-    <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
-      <mat-label>Title</mat-label>
-    </div>
-    <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
-      <input type="text">
+  <div class="row">
+    <div class="col-12">
+      <h1>Create Blog</h1>
     </div>
   </div>
+  <form class="form-horizontal">
+    <div class="row mb-3">
+      <div class="col-3 title-align-right">
+        <label for="title">Title</label>
+      </div>
+      <div class="col-6">
+        <input id="title" type="text" class="form-control" placeholder="Title" [(ngModel)]="title" name="title">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-3 text-align-right content-align-right">
+        <label for="content">Content</label>
+      </div>
+      <div class="col-6">
+        <textarea id="content" type="text" class="form-control blog-text-area" placeholder="Content" [(ngModel)]="content" name="content"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-md-6 col-xl-6 col-lg-6 mx-auto text-end">
+        <button mat-flat-button class="mat-primary black-btn">+ Create</button>
+      </div>
+    </div>
+  </form>
 </div>
