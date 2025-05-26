@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 /* Import Bootstrap */
 @use 'bootstrap/scss/bootstrap' as *;
+/* Import Bootstrap Icons */
+@import 'bootstrap-icons/font/bootstrap-icons.css';
 
 /* Import Playfair Display font */
 @import '@fontsource/playfair-display/400.css';

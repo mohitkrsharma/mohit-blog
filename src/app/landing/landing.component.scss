@@ -2,3 +2,48 @@
   width: 4rem;
   height: 4rem;
 }
+.user-img{
+  height: 5rem;
+  width: 5rem;
+}
+.blog-user-details{
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+.user-blog-details-date{
+  width: 100%;
+}
+.search-input{
+  width: 100%;
+}
+.input-icon-wrapper {
+  position: relative;
+}
+
+.input-icon-wrapper .form-control {
+  padding-left: 2.5rem; /* space for the icon */
+}
+
+.input-icon-wrapper .bi {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  color: #6c757d; /* optional: adjust icon color */
+  pointer-events: none; /* allows clicks to pass through to input */
+}
+.bi-search:hover{
+  cursor: pointer;
+}
+.btn-row{
+  display: flex;
+  justify-content: flex-end;
+}
+.date-delete-edit-div{
+  display: flex;
+  justify-content: space-between;
+}
+.blogger-name,.blog-date{
+  color: #8C8C8D;
+}
