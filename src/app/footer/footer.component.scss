@@ -1,0 +1,27 @@
+.footer-section{
+  background-color: #27282c;
+  h2,hr,i{
+    color: #ffffff;
+  }
+  ul{
+    display: flex;
+    gap: 3rem;
+  }
+  ul li{
+    list-style: none;
+  }
+}
+.social-media-icons{
+  width: 70%;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+.copyright-p{
+  color: #ffffff;
+  text-align: center;
+  font-weight: 300;
+}
+.hr-line{
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
