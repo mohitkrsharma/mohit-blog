@@ -26,7 +26,10 @@
         </div>
       </div>
       <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
-      <p class="register-p"><small>Don't have an account? <a (click)="register()">Register</a></small></p>
+      <div class="register-forgot-container">
+        <span class="register-p"><small>Don't have an account? <a (click)="register()">Register</a></small></span>
+        <span class="register-p"><small><a>Forgot Password?</a></small></span>
+      </div>
     </form>
 
     <form [formGroup]="registerationForm" (ngSubmit)="onSubmit()" class="login-form" *ngIf="pageName === 'register'">
