@@ -24,7 +24,6 @@ export class LoginRegisterComponent implements OnInit{
     if (currentUrl.includes('register')) {
       this.pageName = 'register';
     } else if (currentUrl.includes('login')) {
-      console.log('URL contains login');
       this.pageName = 'login';
     }
     else if (currentUrl.includes('forgot-password')) {
