@@ -15,17 +15,20 @@ import {NgIf} from '@angular/common';
 export class LoginRegisterComponent implements OnInit{
   loginForm: FormGroup;
   registerationForm: FormGroup;
+  forgotPasswordForm: FormGroup;
   error: string = '';
   pageName: string = 'login';
 
   constructor(private fb: FormBuilder,private router: Router) {
     const currentUrl = this.router.url;
     if (currentUrl.includes('register')) {
-      console.log('URL contains register');
       this.pageName = 'register';
     } else if (currentUrl.includes('login')) {
       console.log('URL contains login');
       this.pageName = 'login';
+    }
+    else if (currentUrl.includes('forgot-password')) {
+      this.pageName = 'forgot-password';
     }
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -49,6 +52,10 @@ export class LoginRegisterComponent implements OnInit{
       reg_password: ['', Validators.required],
       reg_re_password: ['', Validators.required]
     })
+
+    this.forgotPasswordForm = this.fb.group({
+      f_email: ['', [Validators.required, Validators.email]]
+    })
   }
 
   ngOnInit(): void {
@@ -67,5 +74,9 @@ export class LoginRegisterComponent implements OnInit{
 
   login() {
     this.router.navigate(['/login']);
+  }
+
+  forgotPassword(){
+    this.router.navigate(['/forgot-password']);
   }
 }

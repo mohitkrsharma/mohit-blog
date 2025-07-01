@@ -28,7 +28,7 @@
       <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
       <div class="register-forgot-container">
         <span class="register-p"><small>Don't have an account? <a (click)="register()">Register</a></small></span>
-        <span class="register-p"><small><a>Forgot Password?</a></small></span>
+        <span class="register-p"><small><a (click)="forgotPassword()">Forgot Password?</a></small></span>
       </div>
     </form>
 
@@ -101,6 +101,22 @@
       </div>
       <button type="submit" [disabled]="registerationForm.invalid">Create Account</button>
       <p class="register-p"><small>Already have an account? <a (click)="login()">Login</a></small></p>
+    </form>
+
+    <form [formGroup]="forgotPasswordForm" (ngSubmit)="onSubmit()" class="login-form" *ngIf="pageName === 'forgot-password'">
+      <h2 class="login-register-h2">Forgot Password</h2>
+      <div class="form-group">
+        <i class="fas fa-user icon"></i>
+        <div class="input-wrapper">
+          <input
+            type="text"
+            formControlName="f_email"
+            placeholder="Email"
+            class="form-control-padding"
+          />
+        </div>
+      </div>
+      <button type="submit" [disabled]="forgotPasswordForm.invalid">Submit</button>
     </form>
   </div>
 </div>

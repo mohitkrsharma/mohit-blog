@@ -7,5 +7,6 @@ export const routes: Routes = [
   {path:'', component: LandingComponent},
   {path:':id/create-blog', component: CreateBlogComponent},
   {path: 'login', component: LoginRegisterComponent},
-  {path: 'register', component: LoginRegisterComponent}
+  {path: 'register', component: LoginRegisterComponent},
+  {path: 'forgot-password', component: LoginRegisterComponent},
 ];
