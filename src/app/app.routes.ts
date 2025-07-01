@@ -6,6 +6,6 @@ import {LoginRegisterComponent} from './login-register/login-register.component'
 export const routes: Routes = [
   {path:'', component: LandingComponent},
   {path:':id/create-blog', component: CreateBlogComponent},
-  {path: ':login', component: LoginRegisterComponent},
-  {path: ':register', component: LoginRegisterComponent}
+  {path: 'login', component: LoginRegisterComponent},
+  {path: 'register', component: LoginRegisterComponent}
 ];
