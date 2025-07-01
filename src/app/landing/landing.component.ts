@@ -10,11 +10,9 @@ import {
   MatCardSubtitle,
   MatCardTitle
 } from '@angular/material/card';
-import {MatFormField, MatLabel} from '@angular/material/form-field';
-import {MatInput} from '@angular/material/input';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-landing',
@@ -29,7 +27,8 @@ import {MatIcon} from '@angular/material/icon';
     MatCardImage,
     ReactiveFormsModule,
     FormsModule,
-    MatIcon
+    MatIcon,
+    MatDialogModule
   ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'

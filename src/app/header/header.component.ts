@@ -25,4 +25,8 @@ export class HeaderComponent implements OnInit {
     console.log('login');
     this.router.navigate(['/login']);
   }
+
+  navigateToLanding() {
+    this.router.navigate(['/']);
+  }
 }
