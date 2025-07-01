@@ -106,13 +106,13 @@
     <form [formGroup]="forgotPasswordForm" (ngSubmit)="onSubmit()" class="login-form" *ngIf="pageName === 'forgot-password'">
       <h2 class="login-register-h2">Forgot Password</h2>
       <div class="form-group">
-        <i class="fas fa-user icon"></i>
         <div class="input-wrapper">
+          <i class="fas fa-user icon"></i>
           <input
-            type="text"
+            type="email"
             formControlName="f_email"
             placeholder="Email"
-            class="form-control-padding"
+            class="form-control"
           />
         </div>
       </div>
