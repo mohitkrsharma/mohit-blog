@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatToolbar} from '@angular/material/toolbar';
 import {MatIcon} from '@angular/material/icon';
 import {MatButton} from '@angular/material/button';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +15,14 @@ import {MatButton} from '@angular/material/button';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
+  login(){
+    console.log('login');
+    this.router.navigate(['/login']);
+  }
 }

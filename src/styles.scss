@@ -1,14 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 /* Import Bootstrap */
 @use 'bootstrap/scss/bootstrap' as *;
+
 /* Import Bootstrap Icons */
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
-/* Import Playfair Display font */
-@import '@fontsource/playfair-display/400.css';
-@import '@fontsource/playfair-display/500.css';
-@import '@fontsource/playfair-display/600.css';
-@import '@fontsource/playfair-display/700.css';
+/* Import Merriweather font */
+@import '@fontsource/merriweather/300.css';
+@import '@fontsource/merriweather/400.css';
+@import '@fontsource/merriweather/700.css';
+@import '@fontsource/merriweather/900.css';
 
 /* Import Lora font */
 @import '@fontsource/lora/400.css';
@@ -31,5 +32,5 @@ body {
   margin: 0; font-family: 'Lora', serif;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Merriweather', serif;
 }

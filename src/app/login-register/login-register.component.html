@@ -1,1 +1,103 @@
-<p>login-register works!</p>
+<div class="container-fluid">
+  <div class="login-div">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form" *ngIf="pageName === 'login'">
+      <h2 class="login-register-h2">Login</h2>
+      <div class="form-group">
+        <div class="input-wrapper">
+          <i class="fas fa-user icon"></i>
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="Email"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-wrapper">
+          <i class="fas fa-lock icon"></i>
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
+      <p class="register-p"><small>Don't have an account? <a (click)="register()">Register</a></small></p>
+    </form>
+
+    <form [formGroup]="registerationForm" (ngSubmit)="onSubmit()" class="login-form" *ngIf="pageName === 'register'">
+      <h2 class="login-register-h2">Register</h2>
+      <div class="form-group">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            formControlName="f_name"
+            placeholder="First Name"
+            class="form-control-padding"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            formControlName="l_name"
+            placeholder="Last Name"
+            class="form-control-padding"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            formControlName="reg_email"
+            placeholder="Email"
+            class="form-control-padding"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            formControlName="reg_re_email"
+            placeholder="Re-enter Email"
+            class="form-control-padding"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            formControlName="reg_password"
+            placeholder="Password"
+            class="form-control-padding"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            formControlName="reg_re_password"
+            placeholder="Re-enter Password"
+            class="form-control-padding"
+          />
+        </div>
+      </div>
+      <button type="submit" [disabled]="registerationForm.invalid">Create Account</button>
+      <p class="register-p"><small>Already have an account? <a (click)="register()">Login</a></small></p>
+    </form>
+  </div>
+</div>
