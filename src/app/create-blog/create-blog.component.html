@@ -26,19 +26,15 @@
             hidden
             #fileInput
           />
-
           <button mat-raised-button color="primary" class="upload-image-button" (click)="fileInput.click()">
             <mat-icon>upload</mat-icon>
             Choose Image
           </button>
-
           <div *ngIf="previewUrl" class="preview">
             <h4>Preview:</h4>
             <img [src]="previewUrl" alt="Image preview" width="200" />
           </div>
-
           <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
-
         </mat-card-content>
       </div>
     </div>

@@ -2,12 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {NgIf} from '@angular/common';
+import {MatCardContent} from '@angular/material/card';
+import {MatButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
+import {MatError} from '@angular/material/input';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login-register',
   imports: [
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    MatButton,
+    MatCardContent,
+    MatError,
+    MatIcon
   ],
   templateUrl: './login-register.component.html',
   styleUrl: './login-register.component.scss'
@@ -18,8 +27,10 @@ export class LoginRegisterComponent implements OnInit{
   forgotPasswordForm: FormGroup;
   error: string = '';
   pageName: string = 'login';
+  previewUrl: string | ArrayBuffer | null = null;
+  errorMessage = '';
 
-  constructor(private fb: FormBuilder,private router: Router) {
+  constructor(private fb: FormBuilder,private router: Router,private snackBar: MatSnackBar) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -77,5 +88,28 @@ export class LoginRegisterComponent implements OnInit{
 
   forgotPassword(){
     this.router.navigate(['/forgot-password']);
+  }
+
+  onFileSelected($event: Event) {
+    const input = $event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) return;
+
+    const validTypes: string[] = ['image/jpeg', 'image/png'];
+
+    if (!validTypes.includes(file.type)) {
+      this.errorMessage = 'Only .jpg, .jpeg, and .png formats are allowed.';
+      this.previewUrl = null;
+      this.snackBar.open(this.errorMessage, 'Close', {duration: 3000});
+      return;
+    }
+
+    this.errorMessage = '';
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.previewUrl = reader.result as string | ArrayBuffer | null;
+    };
+    reader.readAsDataURL(file);
   }
 }

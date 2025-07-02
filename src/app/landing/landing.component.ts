@@ -57,5 +57,8 @@ export class LandingComponent implements OnInit {
         message: 'Are you sure you want to delete this blog?'
       }
     });
+    this.dialog.afterAllClosed.subscribe(() => {
+      alert('Blog deleted successfully!');
+    })
   }
 }
