@@ -9,4 +9,5 @@ export const routes: Routes = [
   {path: 'login', component: LoginRegisterComponent},
   {path: 'register', component: LoginRegisterComponent},
   {path: 'forgot-password', component: LoginRegisterComponent},
+  {path: ':id/edit-blog', component: CreateBlogComponent}
 ];

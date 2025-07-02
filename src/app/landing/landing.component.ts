@@ -12,7 +12,8 @@ import {
 } from '@angular/material/card';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatIcon} from '@angular/material/icon';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-landing',
@@ -38,7 +39,7 @@ export class LandingComponent implements OnInit {
   blogFormControl!: FormControl;
   searchBlogInput: any;
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -47,5 +48,14 @@ export class LandingComponent implements OnInit {
 
   searchBlog(searchBlogInput: any) {
 
+  }
+
+  deleteBlog() {
+    this.dialog.open(ConfirmationDialogComponent,{
+      data: {
+        title: 'Delete Blog',
+        message: 'Are you sure you want to delete this blog?'
+      }
+    });
   }
 }

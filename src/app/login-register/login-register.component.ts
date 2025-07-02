@@ -20,15 +20,6 @@ export class LoginRegisterComponent implements OnInit{
   pageName: string = 'login';
 
   constructor(private fb: FormBuilder,private router: Router) {
-    const currentUrl = this.router.url;
-    if (currentUrl.includes('register')) {
-      this.pageName = 'register';
-    } else if (currentUrl.includes('login')) {
-      this.pageName = 'login';
-    }
-    else if (currentUrl.includes('forgot-password')) {
-      this.pageName = 'forgot-password';
-    }
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -58,6 +49,15 @@ export class LoginRegisterComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    const currentUrl = this.router.url;
+    if (currentUrl.includes('register')) {
+      this.pageName = 'register';
+    } else if (currentUrl.includes('login')) {
+      this.pageName = 'login';
+    }
+    else if (currentUrl.includes('forgot-password')) {
+      this.pageName = 'forgot-password';
+    }
    }
 
   onSubmit(): void {

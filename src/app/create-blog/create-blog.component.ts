@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ToastrModule, ToastrService} from 'ngx-toastr';
 import {FormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-blog',
@@ -16,12 +17,21 @@ import {MatButton} from '@angular/material/button';
 export class CreateBlogComponent implements OnInit{
   title: any;
   content: any;
+  pageName!: string;
 
-  constructor(private toastr: ToastrService) {
+  constructor(private toastr: ToastrService,private router: Router) {
   }
 
   ngOnInit(): void {
-      throw new Error('Method not implemented.');
+    const currentUrl = this.router.url;
+    if (currentUrl.includes('create-blog')) {
+      this.pageName = 'create-blog';
+    } else if (currentUrl.includes('edit-blog')) {
+      this.pageName = 'edit-blog';
+    }
+    else {
+      this.pageName = 'create-blog';
+    }
   }
 
   createBlog() {

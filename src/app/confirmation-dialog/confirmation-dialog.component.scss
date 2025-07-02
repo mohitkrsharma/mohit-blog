@@ -1,0 +1,13 @@
+.black-btn{
+  background-color: #000000;
+}
+
+::ng-deep .mat-mdc-dialog-container {
+  --mdc-dialog-container-width: 400px;
+}
+
+.dialog-title{
+  background-color: #000000;
+  color: #ffffff;
+  padding: 1.5rem 2rem;
+}
