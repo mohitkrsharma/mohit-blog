@@ -3,13 +3,17 @@ import {ToastrModule, ToastrService} from 'ngx-toastr';
 import {FormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
 import {Router} from '@angular/router';
+import {NgIf} from '@angular/common';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-create-blog',
   imports: [
     FormsModule,
     MatButton,
-    ToastrModule
+    ToastrModule,
+    NgIf,
+    MatIcon
   ],
   templateUrl: './create-blog.component.html',
   styleUrl: './create-blog.component.scss'
@@ -36,5 +40,9 @@ export class CreateBlogComponent implements OnInit{
 
   createBlog() {
     this.toastr.success('Success!', 'Blog created successfully!');
+  }
+
+  editBlog(){
+    this.toastr.success('Success!', 'Blog edited successfully!');
   }
 }

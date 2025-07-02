@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-12">
-      <h1>{{pageName === 'create-blog' ? 'Create Blog' : 'Edit Blog'}}</h1>
+      <h1 class="edit-create-blog-h1">{{pageName === 'create-blog' ? 'Create Blog' : 'Edit Blog'}}</h1>
     </div>
   </div>
   <form class="form-horizontal">
@@ -21,9 +21,10 @@
         <textarea id="content" type="text" class="form-control blog-text-area" placeholder="Content" [(ngModel)]="content" name="content"></textarea>
       </div>
     </div>
-    <div class="row">
+    <div class="row mb-2">
       <div class="col-sm-4 col-md-6 col-xl-6 col-lg-6 mx-auto text-end">
-        <button mat-flat-button class="mat-primary black-btn" (click)="createBlog()">+ Create</button>
+        <button mat-flat-button class="mat-primary black-btn" (click)="createBlog()" *ngIf="pageName === 'create-blog'"><mat-icon>create</mat-icon> Create</button>
+        <button mat-flat-button class="mat-primary black-btn" (click)="editBlog()" *ngIf="pageName === 'edit-blog'"><mat-icon>save</mat-icon> Save</button>
       </div>
     </div>
   </form>
