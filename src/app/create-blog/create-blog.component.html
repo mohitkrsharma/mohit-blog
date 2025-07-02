@@ -15,10 +15,39 @@
     </div>
     <div class="row mb-3">
       <div class="col-3 text-align-right content-align-right">
+          <mat-card-title>Upload Image</mat-card-title>
+      </div>
+      <div class="col-6">
+        <mat-card-content>
+          <input
+            type="file"
+            (change)="onFileSelected($event)"
+            accept=".jpg, .jpeg, .png"
+            hidden
+            #fileInput
+          />
+
+          <button mat-raised-button color="primary" class="upload-image-button" (click)="fileInput.click()">
+            <mat-icon>upload</mat-icon>
+            Choose Image
+          </button>
+
+          <div *ngIf="previewUrl" class="preview">
+            <h4>Preview:</h4>
+            <img [src]="previewUrl" alt="Image preview" width="200" />
+          </div>
+
+          <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+
+        </mat-card-content>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-3 text-align-right content-align-right">
         <label for="content">Content</label>
       </div>
       <div class="col-6">
-        <textarea id="content" type="text" class="form-control blog-text-area" placeholder="Content" [(ngModel)]="content" name="content"></textarea>
+        <textarea id="content" type="text" class="form-control blog-text-area" placeholder="Enter Content" [(ngModel)]="content" name="content"></textarea>
       </div>
     </div>
     <div class="row mb-2">
