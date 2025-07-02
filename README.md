@@ -1,6 +1,6 @@
 # Blog Frontend
 
-A modern blog application built with Angular 19, Angular Material, Bootstrap, and more. This frontend application connects to a Node.js/Express.js backend with MariaDB for data storage.
+A modern blog application built with Angular 19, Angular Material, Bootstrap, and more. This frontend application connects to a Node.js/Express.js backend with MongoDB for data storage.
 
 ## Project Overview
 
