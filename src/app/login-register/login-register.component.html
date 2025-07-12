@@ -27,18 +27,18 @@
       </div>
       <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
       <div class="register-forgot-container">
-        <span class="register-p"><small>Don't have an account? <a (click)="register()">Register</a></small></span>
+        <small class="register-p" (click)="register()">Don't have an account? Register</small>
         <span class="register-p"><small><a (click)="forgotPassword()">Forgot Password?</a></small></span>
       </div>
     </form>
 
-    <form [formGroup]="registerationForm" (ngSubmit)="onSubmit()" class="login-form" *ngIf="pageName === 'register'">
+    <form [formGroup]="registrationForm" (ngSubmit)="registerUser()" class="login-form" *ngIf="pageName === 'register'">
       <h2 class="login-register-h2">Register</h2>
       <div class="form-group">
         <div class="input-wrapper">
           <input
             type="text"
-            formControlName="f_name"
+            formControlName="firstName"
             placeholder="First Name"
             class="form-control-padding"
           />
@@ -49,7 +49,7 @@
         <div class="input-wrapper">
           <input
             type="text"
-            formControlName="l_name"
+            formControlName="lastName"
             placeholder="Last Name"
             class="form-control-padding"
           />
@@ -60,7 +60,7 @@
         <div class="input-wrapper">
           <input
             type="text"
-            formControlName="reg_email"
+            formControlName="email"
             placeholder="Email"
             class="form-control-padding"
           />
@@ -81,8 +81,8 @@
       <div class="form-group">
         <div class="input-wrapper">
           <input
-            type="text"
-            formControlName="reg_password"
+            type="password"
+            formControlName="password"
             placeholder="Password"
             class="form-control-padding"
           />
@@ -92,7 +92,7 @@
       <div class="form-group">
         <div class="input-wrapper">
           <input
-            type="text"
+            type="password"
             formControlName="reg_re_password"
             placeholder="Re-enter Password"
             class="form-control-padding"
@@ -102,7 +102,6 @@
 
       <div class="form-group">
         <div class="input-wrapper">
-          <!--<mat-card-title>Upload Profile Image</mat-card-title>-->
           <mat-card-content>
             <input
               type="file"
@@ -116,14 +115,14 @@
               Choose Profile Image
             </button>
             <div *ngIf="previewUrl" class="preview">
-              <h4>Preview:</h4>
-              <img [src]="previewUrl" alt="Image preview" width="200" />
+              <h4 class="file-upload-msg">{{'Image '+ fileName + ' uploaded successfully!'}}</h4>
+              <!--<img [src]="previewUrl" alt="Image preview" />-->
             </div>
             <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
           </mat-card-content>
         </div>
       </div>
-      <button type="submit" [disabled]="registerationForm.invalid">Create Account</button>
+      <button type="submit" [disabled]="registrationForm.invalid">Create Account</button>
       <p class="register-p"><small>Already have an account? <a (click)="login()">Login</a></small></p>
     </form>
 

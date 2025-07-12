@@ -7,6 +7,8 @@ import {MatButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {MatError} from '@angular/material/input';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {AuthService} from '../service/auth.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-register',
@@ -23,34 +25,31 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class LoginRegisterComponent implements OnInit{
   loginForm: FormGroup;
-  registerationForm: FormGroup;
+  registrationForm: FormGroup;
   forgotPasswordForm: FormGroup;
   error: string = '';
   pageName: string = 'login';
   previewUrl: string | ArrayBuffer | null = null;
   errorMessage = '';
+  fileName: string = '';
+  selectedFile: File | null = null;
 
-  constructor(private fb: FormBuilder,private router: Router,private snackBar: MatSnackBar) {
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private authService: AuthService,
+              private toastr: ToastrService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
 
-    this.registerationForm = this.fb.group({
-      fname: ['', Validators.required],
-      lname: ['', Validators.required],
+    this.registrationForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      confirm_email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      confirm_password: ['', Validators.required]
-    });
-
-    this.registerationForm = this.fb.group({
-      f_name: ['', Validators.required],
-      l_name: ['', Validators.required],
-      reg_email: ['', [Validators.required, Validators.email]],
       reg_re_email: ['', [Validators.required, Validators.email]],
-      reg_password: ['', Validators.required],
+      password: ['', Validators.required],
       reg_re_password: ['', Validators.required]
     })
 
@@ -93,14 +92,17 @@ export class LoginRegisterComponent implements OnInit{
   onFileSelected($event: Event) {
     const input = $event.target as HTMLInputElement;
     const file = input.files?.[0];
-
     if (!file) return;
+
+    this.fileName = file.name;
+    this.selectedFile = file;
 
     const validTypes: string[] = ['image/jpeg', 'image/png'];
 
     if (!validTypes.includes(file.type)) {
       this.errorMessage = 'Only .jpg, .jpeg, and .png formats are allowed.';
       this.previewUrl = null;
+      this.selectedFile = null;
       this.snackBar.open(this.errorMessage, 'Close', {duration: 3000});
       return;
     }
@@ -111,5 +113,48 @@ export class LoginRegisterComponent implements OnInit{
       this.previewUrl = reader.result as string | ArrayBuffer | null;
     };
     reader.readAsDataURL(file);
+  }
+
+  registerUser() {
+    if (this.registrationForm.valid) {
+      const formValues = this.registrationForm.value;
+
+      if (formValues.email !== formValues.reg_re_email) {
+        this.snackBar.open('Email addresses do not match', 'Close', {duration: 3000});
+        return;
+      }
+
+      if (formValues.password !== formValues.reg_re_password) {
+        this.snackBar.open('Passwords do not match', 'Close', {duration: 3000});
+        return;
+      }
+
+      // Create FormData object to send both form values and file
+      const formData = new FormData();
+
+      // Add form values to FormData
+      formData.append('firstName', formValues.firstName);
+      formData.append('lastName', formValues.lastName);
+      formData.append('email', formValues.email);
+      formData.append('password', formValues.password);
+
+      // Add profile picture if selected
+      if (this.selectedFile) {
+        formData.append('profilePic', this.selectedFile, this.fileName);
+      }
+
+      this.authService.register(formData).subscribe((response: any) => {
+        debugger;
+        console.log(response);
+        console.log('User registered successfully!')
+        this.toastr.success('Success!', 'User registered successfully!');
+        this.router.navigate(['/login']);
+      }, (error: any) => {
+        console.log('Error registering user:', error.message);
+        this.toastr.error('Error!', 'Error registering user!');
+      });
+    } else {
+      this.snackBar.open('Please fill all required fields correctly', 'Close', {duration: 3000});
+    }
   }
 }
