@@ -110,7 +110,7 @@
               hidden
               #fileInput
             />
-            <button mat-raised-button color="primary" class="upload-image-button" (click)="fileInput.click()">
+            <button type="button" mat-raised-button color="primary" class="upload-image-button" (click)="fileInput.click()">
               <mat-icon>upload</mat-icon>
               Choose Profile Image
             </button>
@@ -122,7 +122,7 @@
           </mat-card-content>
         </div>
       </div>
-      <button type="submit" [disabled]="registrationForm.invalid">Create Account</button>
+      <button type="submit" [disabled]="registrationForm.invalid || isSubmitting">{{ isSubmitting ? 'Creating Account...' : 'Create Account' }}</button>
       <p class="register-p"><small>Already have an account? <a (click)="login()">Login</a></small></p>
     </form>
 

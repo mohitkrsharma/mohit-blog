@@ -33,6 +33,7 @@ export class LoginRegisterComponent implements OnInit{
   errorMessage = '';
   fileName: string = '';
   selectedFile: File | null = null;
+  isSubmitting: boolean = false;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -113,9 +114,15 @@ export class LoginRegisterComponent implements OnInit{
       this.previewUrl = reader.result as string | ArrayBuffer | null;
     };
     reader.readAsDataURL(file);
+    $event.preventDefault();
   }
 
   registerUser() {
+    // Prevent multiple submissions
+    if (this.isSubmitting) {
+      return;
+    }
+
     if (this.registrationForm.valid) {
       const formValues = this.registrationForm.value;
 
@@ -129,6 +136,12 @@ export class LoginRegisterComponent implements OnInit{
         return;
       }
 
+      // Check if profile image is uploaded
+      if (!this.selectedFile) {
+        this.snackBar.open('Please upload a profile image', 'Close', {duration: 3000});
+        return;
+      }
+
       // Create FormData object to send both form values and file
       const formData = new FormData();
 
@@ -138,21 +151,24 @@ export class LoginRegisterComponent implements OnInit{
       formData.append('email', formValues.email);
       formData.append('password', formValues.password);
 
-      // Add profile picture if selected
-      if (this.selectedFile) {
-        formData.append('profilePic', this.selectedFile, this.fileName);
-      }
+      // Add profile picture
+      formData.append('profilePic', this.selectedFile, this.fileName);
 
-      this.authService.register(formData).subscribe((response: any) => {
-        debugger;
-        console.log(response);
-        console.log('User registered successfully!')
-        this.toastr.success('Success!', 'User registered successfully!');
-        this.router.navigate(['/login']);
-      }, (error: any) => {
-        console.log('Error registering user:', error.message);
-        this.toastr.error('Error!', 'Error registering user!');
-      });
+      // Set submitting flag to prevent multiple submissions
+      this.isSubmitting = true;
+
+      this.authService.register(formData).subscribe(
+        (response: any) => {
+          debugger;
+          this.toastr.success('Success!', response.message);
+          this.router.navigate(['/login']);
+          this.isSubmitting = false;
+        },
+        (error: any) => {
+          this.toastr.error('Error!', error.error.message);
+          this.isSubmitting = false;
+        }
+      );
     } else {
       this.snackBar.open('Please fill all required fields correctly', 'Close', {duration: 3000});
     }
