@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {NgIf} from '@angular/common';
-import {MatCardContent} from '@angular/material/card';
-import {MatButton} from '@angular/material/button';
-import {MatIcon} from '@angular/material/icon';
-import {MatError} from '@angular/material/input';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthService} from '../service/auth.service';
 import {ToastrService} from 'ngx-toastr';
@@ -14,11 +10,7 @@ import {ToastrService} from 'ngx-toastr';
   selector: 'app-login-register',
   imports: [
     ReactiveFormsModule,
-    NgIf,
-    MatButton,
-    MatCardContent,
-    MatError,
-    MatIcon
+    NgIf
   ],
   templateUrl: './login-register.component.html',
   styleUrl: './login-register.component.scss'
@@ -29,10 +21,6 @@ export class LoginRegisterComponent implements OnInit{
   forgotPasswordForm: FormGroup;
   error: string = '';
   pageName: string = 'login';
-  previewUrl: string | ArrayBuffer | null = null;
-  errorMessage = '';
-  fileName: string = '';
-  selectedFile: File | null = null;
   isSubmitting: boolean = false;
 
   constructor(private fb: FormBuilder,
@@ -71,51 +59,32 @@ export class LoginRegisterComponent implements OnInit{
     }
    }
 
-  onSubmit(): void {
+  authenticate(): void {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
-      // Handle login logic
+      this.authService.login(this.loginForm.value).subscribe(
+        (response: any) => {
+          this.toastr.success('Success!', response.message);
+          this.router.navigate(['/']);
+        },
+        (error: any) => {
+          this.toastr.error('Error!', error.error.message);
+        }
+      );
     }
   }
 
   register() {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/register']).then(() =>{} );
   }
 
   login() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login']).then(() =>{} );
   }
 
   forgotPassword(){
-    this.router.navigate(['/forgot-password']);
+    this.router.navigate(['/forgot-password']).then(() =>{} );
   }
 
-  onFileSelected($event: Event) {
-    const input = $event.target as HTMLInputElement;
-    const file = input.files?.[0];
-    if (!file) return;
-
-    this.fileName = file.name;
-    this.selectedFile = file;
-
-    const validTypes: string[] = ['image/jpeg', 'image/png'];
-
-    if (!validTypes.includes(file.type)) {
-      this.errorMessage = 'Only .jpg, .jpeg, and .png formats are allowed.';
-      this.previewUrl = null;
-      this.selectedFile = null;
-      this.snackBar.open(this.errorMessage, 'Close', {duration: 3000});
-      return;
-    }
-
-    this.errorMessage = '';
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.previewUrl = reader.result as string | ArrayBuffer | null;
-    };
-    reader.readAsDataURL(file);
-    $event.preventDefault();
-  }
 
   registerUser() {
     // Prevent multiple submissions
@@ -136,13 +105,8 @@ export class LoginRegisterComponent implements OnInit{
         return;
       }
 
-      // Check if profile image is uploaded
-      if (!this.selectedFile) {
-        this.snackBar.open('Please upload a profile image', 'Close', {duration: 3000});
-        return;
-      }
 
-      // Create FormData object to send both form values and file
+      // Create a FormData object to send both form values and file
       const formData = new FormData();
 
       // Add form values to FormData
@@ -151,10 +115,8 @@ export class LoginRegisterComponent implements OnInit{
       formData.append('email', formValues.email);
       formData.append('password', formValues.password);
 
-      // Add profile picture
-      formData.append('profilePic', this.selectedFile, this.fileName);
 
-      // Set submitting flag to prevent multiple submissions
+      // Set submitting a flag to prevent multiple submissions
       this.isSubmitting = true;
 
       this.authService.register(formData).subscribe(
