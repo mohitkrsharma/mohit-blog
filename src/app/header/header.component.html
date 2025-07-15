@@ -4,6 +4,8 @@
     <button mat-button class="mat-primary">
       <mat-icon class="add-icon">add</mat-icon>
       <span class="login">Add Blog</span></button>
-    <button mat-button class="mat-primary"><mat-icon class="person">person</mat-icon><span class="login" (click)="login()">Login</span></button>
+    <button mat-button class="mat-primary" *ngIf="!userData"><mat-icon class="person">person</mat-icon><span class="login" (click)="login()">Login</span></button>
+    <img [src]="userData.data.profilePic" alt="User Image" class="user-img" width="25px" height="auto" *ngIf="userData" matTooltip="{{userData.data.firstName + ' ' + userData.data.lastName}}">
+    <mat-icon *ngIf="userData" class="logout-icon" matTooltip="Logout">logout</mat-icon>
   </div>
 </mat-toolbar>
