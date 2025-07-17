@@ -19,7 +19,7 @@
         <label for="content">Content</label>
       </div>
       <div class="col-6">
-        <textarea id="content" type="text" class="form-control blog-text-area" placeholder="Enter Content" formControlName="content" name="content" maxlength="60"></textarea>
+        <textarea id="content" type="text" class="form-control blog-text-area" placeholder="Enter Content" formControlName="content" name="content" maxlength="2000"></textarea>
         <p class="total-characters-left"><small>{{2000-createEditBlogForm.value.content.length + ' characters left of 2000'}}</small></p>
       </div>
     </div>

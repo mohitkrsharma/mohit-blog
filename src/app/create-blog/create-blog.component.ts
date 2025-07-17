@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ToastrModule, ToastrService} from 'ngx-toastr';
+import {ToastrService} from 'ngx-toastr';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
 import {Router} from '@angular/router';
@@ -13,7 +13,6 @@ import {BlogService} from '../service/blog.service';
   imports: [
     FormsModule,
     MatButton,
-    ToastrModule,
     NgIf,
     MatIcon,
     ReactiveFormsModule
@@ -56,21 +55,14 @@ export class CreateBlogComponent implements OnInit{
         title: this.createEditBlogForm.value.title,
         content: this.createEditBlogForm.value.content
       }
-      this.blogService.createBlog(payload).subscribe({
-        next: (response: any) => {
-          console.log(response);
-          this.toastr.success('Success!', 'Blog created successfully!');
-          this.createEditBlogForm.reset();
-        },
-        error: (error: any) => {
-          console.error(error);
-          this.toastr.error('Error!', error?.error?.message || 'Something went wrong');
-          this.createEditBlogForm.reset();
-        },
-        complete: () => {
-          console.log('Blog creation request completed.');
-        }
-      });
+      this.blogService.createBlog(payload).subscribe((response: any) => {
+        this.toastr.success('Success!', 'Blog created successfully!');
+        this.createEditBlogForm.reset();
+      }, (error: any) => {
+        console.error(error);
+        this.toastr.error('Error!', error?.error?.message || 'Something went wrong');
+        this.createEditBlogForm.reset();
+      })
     } else {
       this.snackBar.open('Please check your input and try again', 'Close', {duration: 3000});
     }
