@@ -4,38 +4,14 @@
       <h1 class="edit-create-blog-h1">{{pageName === 'create-blog' ? 'Create Blog' : 'Edit Blog'}}</h1>
     </div>
   </div>
-  <form class="form-horizontal">
+  <form class="form-horizontal" [formGroup]="createEditBlogForm">
     <div class="row mb-3">
       <div class="col-3 title-align-right">
         <label for="title">Title</label>
       </div>
       <div class="col-6">
-        <input id="title" type="text" class="form-control" placeholder="Title" [(ngModel)]="title" name="title">
-      </div>
-    </div>
-    <div class="row mb-3">
-      <div class="col-3 text-align-right content-align-right">
-          <mat-card-title>Upload Image</mat-card-title>
-      </div>
-      <div class="col-6">
-        <mat-card-content>
-          <input
-            type="file"
-            (change)="onFileSelected($event)"
-            accept=".jpg, .jpeg, .png"
-            hidden
-            #fileInput
-          />
-          <button mat-raised-button color="primary" class="upload-image-button" (click)="fileInput.click()">
-            <mat-icon>upload</mat-icon>
-            Choose Image
-          </button>
-          <div *ngIf="previewUrl" class="preview">
-            <h4>Preview:</h4>
-            <img [src]="previewUrl" alt="Image preview" width="200" />
-          </div>
-          <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
-        </mat-card-content>
+        <input id="title" type="text" class="form-control" placeholder="Title" formControlName="title" name="title" maxlength="60">
+        <p class="total-characters-left"><small>{{60-createEditBlogForm.value.title.length + ' characters left of 60'}}</small></p>
       </div>
     </div>
     <div class="row mb-3">
@@ -43,7 +19,8 @@
         <label for="content">Content</label>
       </div>
       <div class="col-6">
-        <textarea id="content" type="text" class="form-control blog-text-area" placeholder="Enter Content" [(ngModel)]="content" name="content"></textarea>
+        <textarea id="content" type="text" class="form-control blog-text-area" placeholder="Enter Content" formControlName="content" name="content" maxlength="60"></textarea>
+        <p class="total-characters-left"><small>{{2000-createEditBlogForm.value.content.length + ' characters left of 2000'}}</small></p>
       </div>
     </div>
     <div class="row mb-2">

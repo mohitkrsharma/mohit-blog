@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ToastrModule, ToastrService} from 'ngx-toastr';
-import {FormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
 import {Router} from '@angular/router';
 import {NgIf} from '@angular/common';
 import {MatIcon} from '@angular/material/icon';
-import {MatError} from '@angular/material/input';
-import {MatCardContent, MatCardTitle} from '@angular/material/card';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {BlogService} from '../service/blog.service';
 
 @Component({
   selector: 'app-create-blog',
@@ -17,9 +16,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     ToastrModule,
     NgIf,
     MatIcon,
-    MatError,
-    MatCardContent,
-    MatCardTitle
+    ReactiveFormsModule
   ],
   templateUrl: './create-blog.component.html',
   styleUrl: './create-blog.component.scss'
@@ -30,8 +27,14 @@ export class CreateBlogComponent implements OnInit{
   pageName!: string;
   previewUrl: string | ArrayBuffer | null = null;
   errorMessage = '';
-
-  constructor(private toastr: ToastrService,private router: Router,private snackBar: MatSnackBar) {
+  createEditBlogForm!: FormGroup;
+  constructor(private toastr: ToastrService,private router: Router,
+              private snackBar: MatSnackBar,private fb: FormBuilder,
+              private blogService: BlogService) {
+    this.createEditBlogForm = this.fb.group({
+      title: ['', [Validators.required, Validators.maxLength(60)]],
+      content: ['', [Validators.required, Validators.maxLength(2000)]]
+    });
   }
 
   ngOnInit(): void {
@@ -46,34 +49,38 @@ export class CreateBlogComponent implements OnInit{
     }
   }
 
+  // Add validation before submitting
   createBlog() {
-    this.toastr.success('Success!', 'Blog created successfully!');
-  }
-
-  editBlog(){
-    this.toastr.success('Success!', 'Blog edited successfully!');
-  }
-
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
-
-    if (!file) return;
-
-    const validTypes: string[] = ['image/jpeg', 'image/png'];
-
-    if (!validTypes.includes(file.type)) {
-      this.errorMessage = 'Only .jpg, .jpeg, and .png formats are allowed.';
-      this.previewUrl = null;
-      this.snackBar.open(this.errorMessage, 'Close', {duration: 3000});
-      return;
+    if (this.createEditBlogForm.valid) {
+      let payload = {
+        title: this.createEditBlogForm.value.title,
+        content: this.createEditBlogForm.value.content
+      }
+      this.blogService.createBlog(payload).subscribe({
+        next: (response: any) => {
+          console.log(response);
+          this.toastr.success('Success!', 'Blog created successfully!');
+          this.createEditBlogForm.reset();
+        },
+        error: (error: any) => {
+          console.error(error);
+          this.toastr.error('Error!', error?.error?.message || 'Something went wrong');
+          this.createEditBlogForm.reset();
+        },
+        complete: () => {
+          console.log('Blog creation request completed.');
+        }
+      });
+    } else {
+      this.snackBar.open('Please check your input and try again', 'Close', {duration: 3000});
     }
+  }
 
-    this.errorMessage = '';
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.previewUrl = reader.result as string | ArrayBuffer | null;
-    };
-    reader.readAsDataURL(file);
+  editBlog() {
+    if (this.createEditBlogForm.valid) {
+      this.toastr.success('Success!', 'Blog edited successfully!');
+    } else {
+      this.snackBar.open('Please check your input and try again', 'Close', {duration: 3000});
+    }
   }
 }

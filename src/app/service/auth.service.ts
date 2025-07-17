@@ -10,20 +10,20 @@ export class AuthService {
   userSubject = new BehaviorSubject<any>(null);
   userSubject$ = this.userSubject.asObservable();
 
-  constructor(public http: HttpClient) {
+  constructor(private http: HttpClient) {
     // Initialize with stored user data if available
     this.initializeUserFromStorage();
   }
 
   private initializeUserFromStorage(): void {
-    const storedUserInfo = localStorage.getItem('UserInfo');
+    const storedUserInfo = sessionStorage.getItem('UserInfo');
     if (storedUserInfo) {
       try {
         const parsedUserInfo = JSON.parse(storedUserInfo);
         this.userSubject.next(parsedUserInfo);
       } catch (error) {
         console.error('Error parsing stored user info:', error);
-        localStorage.removeItem('UserInfo');
+        sessionStorage.removeItem('UserInfo');
       }
     }
   }
@@ -34,15 +34,5 @@ export class AuthService {
 
   login(params: object) {
     return this.http.post(this.apiUrl + '/login', params);
-  }
-
-  logout(): void {
-    this.userSubject.next(null);
-    localStorage.removeItem('UserInfo');
-    localStorage.removeItem('auth_token');
-  }
-
-  isAuthenticated(): boolean {
-    return this.userSubject.value !== null;
   }
 }

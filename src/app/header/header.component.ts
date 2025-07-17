@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
 
     // Also check if there's stored user data on page refresh
-    const storedUserInfo = localStorage.getItem('UserInfo');
+    const storedUserInfo = sessionStorage.getItem('UserInfo');
     if (storedUserInfo && !this.userData) {
       const parsedUserInfo = JSON.parse(storedUserInfo);
       this.authService.userSubject.next(parsedUserInfo);
@@ -59,8 +59,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logout() {
     // Clear user data and localStorage
     this.authService.userSubject.next(null);
-    localStorage.removeItem('UserInfo');
-    localStorage.removeItem('auth_token');
+    sessionStorage.removeItem('UserInfo');
+    sessionStorage.removeItem('auth_token');
     this.router.navigate(['/login']);
+  }
+
+  navigateToCreateBlog() {
+    this.router.navigate([`user/${JSON.parse(<string>sessionStorage.getItem('UserInfo')).data._id}/create-blog`]);
   }
 }

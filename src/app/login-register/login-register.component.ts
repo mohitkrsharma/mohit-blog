@@ -64,8 +64,8 @@ export class LoginRegisterComponent implements OnInit{
       this.authService.login(this.loginForm.value).subscribe(
         (response: any) => {
           this.authService.userSubject.next(response);
-          localStorage.setItem('UserInfo', JSON.stringify(response));
-          localStorage.setItem('auth_token', response.token);
+          sessionStorage.setItem('UserInfo', JSON.stringify(response));
+          sessionStorage.setItem('auth_token', response.token);
           this.toastr.success('Success!', response.message);
           this.router.navigate(['/']);
         },

@@ -16,8 +16,8 @@ export const authInterceptor: HttpInterceptorFn = (
 ): Observable<HttpEvent<unknown>> => {
   const router = inject(Router);
 
-  // Get token from localStorage
-  const token = localStorage.getItem('auth_token');
+  // Get token from sessionStorage
+  const token = sessionStorage.getItem('auth_token');
 
   // If token exists, add it to the request headers
   if (token) {
