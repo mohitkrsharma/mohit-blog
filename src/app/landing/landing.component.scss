@@ -47,3 +47,28 @@
 .blogger-name,.blog-date{
   color: #8C8C8D;
 }
+.ellipsis-p{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  font-weight: lighter;
+  vertical-align: middle;
+}
+.blog-mat-card-content{
+  padding: 0 !important;
+}
+.card-row-divs{
+  padding-bottom: 2rem;
+}
+.edit-icon,.delete-icon{
+  color: #858585;
+  height: 1.5rem;
+  width: 1.5rem;
+  vertical-align: middle;
+  overflow: unset;
+}
+.icons-div{
+  display: flex;
+  gap: 1.25rem;
+}

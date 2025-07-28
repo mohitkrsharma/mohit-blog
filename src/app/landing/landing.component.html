@@ -2,133 +2,32 @@
   <div class="row justify-content-center">
     <div class="col-sm-6 col-md-6 col-lg-6 mb-4 mb-lg-0 mb-xl-4 mx-auto text-center">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search blogs" [(ngModel)]="searchBlogInput">
+        <input type="text" id="searchBlog" name="searchBlog" matInput placeholder="Search blogs" [(ngModel)]="searchBlogInput" class="form-control">
         <span class="input-group-text"><i class="bi bi-search" (click)="searchBlog(searchBlogInput)"></i></span>
       </div>
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-md-3 col-lg-3">
+  <div class="row justify-content-center card-row-divs">
+    <div class="col-md-3 col-lg-3" *ngFor="let blog of blogs?.data">
       <mat-card class="example-card" appearance="outlined">
         <mat-card-header>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+          <mat-card-title>{{ blog.title }}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-          </p>
+        <img mat-card-image src="{{blog.featuredImage}}" alt="Photo of a Shiba Inu">
+        <mat-card-content class="blog-mat-card-content">
+          <p class="ellipsis-p">{{blog.content}}</p>
         </mat-card-content>
         <hr>
         <mat-card-actions>
           <div class="blog-user-details">
             <img src="/dummy-user.png" alt="User Image" class="user-img">
             <div class="user-blog-details-date">
-              <p class="mb-0 blogger-name">Mohit Kumar Sharma</p>
+              <p class="mb-0 blogger-name">{{ blog.author.firstName + ' ' + blog.author.lastName }}</p>
               <div class="date-delete-edit-div">
-                <span class="blog-date">26 May 2025</span>
-                <div class="icons-div">
-                  <mat-icon>edit</mat-icon>
-                  <mat-icon (click)="deleteBlog()">delete</mat-icon>
-                </div>
-              </div>
-            </div>
-          </div>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-    <div class="col-md-3 col-lg-3">
-      <mat-card class="example-card" appearance="outlined">
-        <mat-card-header>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-          </p>
-        </mat-card-content>
-        <hr>
-        <mat-card-actions>
-          <div class="blog-user-details">
-            <img src="/dummy-user.png" alt="User Image" class="user-img">
-            <div class="user-blog-details-date">
-              <p class="mb-0 blogger-name">Mohit Kumar Sharma</p>
-              <div class="date-delete-edit-div">
-                <span class="blog-date">26 May 2025</span>
-                <div class="icons-div">
-                  <mat-icon>edit</mat-icon>
-                  <mat-icon>delete</mat-icon>
-                </div>
-              </div>
-            </div>
-          </div>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-    <div class="col-md-3 col-lg-3">
-      <mat-card class="example-card" appearance="outlined">
-        <mat-card-header>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-          </p>
-        </mat-card-content>
-        <hr>
-        <mat-card-actions>
-          <div class="blog-user-details">
-            <img src="/dummy-user.png" alt="User Image" class="user-img">
-            <div class="user-blog-details-date">
-              <p class="mb-0 blogger-name">Mohit Kumar Sharma</p>
-              <div class="date-delete-edit-div">
-                <span class="blog-date">26 May 2025</span>
-                <div class="icons-div">
-                  <mat-icon>edit</mat-icon>
-                  <mat-icon>delete</mat-icon>
-                </div>
-              </div>
-            </div>
-          </div>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-    <div class="col-md-3 col-lg-3">
-      <mat-card class="example-card" appearance="outlined">
-        <mat-card-header>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-          </p>
-        </mat-card-content>
-        <hr>
-        <mat-card-actions>
-          <div class="blog-user-details">
-            <img src="/dummy-user.png" alt="User Image" class="user-img">
-            <div class="user-blog-details-date">
-              <p class="mb-0 blogger-name">Mohit Kumar Sharma</p>
-              <div class="date-delete-edit-div">
-                <span class="blog-date">26 May 2025</span>
-                <div class="icons-div">
-                  <mat-icon>edit</mat-icon>
-                  <mat-icon>delete</mat-icon>
+                <span class="blog-date">{{blog.createdAt | date: 'dd-MMM-yyyy'}}</span>
+                <div class="icons-div" *ngIf="userInfo && userInfo.success === true && (userInfo.data.email === blog.author.email || userInfo.userType === 'admin')">
+                  <mat-icon class="edit-icon" (click)="editBlog()">edit</mat-icon>
+                  <mat-icon class="delete-icon" (click)="deleteBlog()">delete</mat-icon>
                 </div>
               </div>
             </div>

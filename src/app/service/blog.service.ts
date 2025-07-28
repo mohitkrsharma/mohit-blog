@@ -11,4 +11,8 @@ export class BlogService {
   createBlog(params: object) {
     return this.http.post(this.apiUrl + '/blogs', params);
    }
+
+   getAllBlogs(){
+    return this.http.get(this.apiUrl + '/blogs');
+   }
 }

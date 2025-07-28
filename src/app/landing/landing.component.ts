@@ -6,7 +6,6 @@ import {
   MatCardContent,
   MatCardHeader,
   MatCardImage,
-  MatCardSubtitle,
   MatCardTitle
 } from '@angular/material/card';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -14,6 +13,7 @@ import {MatIcon} from '@angular/material/icon';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
 import {ToastrService} from 'ngx-toastr';
+import {BlogService} from '../service/blog.service';
 
 @Component({
   selector: 'app-landing',
@@ -21,7 +21,6 @@ import {ToastrService} from 'ngx-toastr';
     CommonModule,
     MatCardActions,
     MatCardContent,
-    MatCardSubtitle,
     MatCardTitle,
     MatCardHeader,
     MatCard,
@@ -38,12 +37,15 @@ export class LandingComponent implements OnInit {
   protected readonly Date = Date;
   blogFormControl!: FormControl;
   searchBlogInput: any;
-
-  constructor(private dialog: MatDialog,private toastr: ToastrService) {
+  blogs: any;
+  userInfo:any;
+  constructor(private dialog: MatDialog,private toastr: ToastrService, private blogService: BlogService) {
   }
 
   ngOnInit(): void {
     this.blogFormControl = new FormControl('');
+    this.getBlogs();
+    this.getUserInfo();
   }
 
   searchBlog(searchBlogInput: any) {
@@ -65,5 +67,25 @@ export class LandingComponent implements OnInit {
       }
       // If result is false or undefined, do nothing (user cancelled)
     });
+  }
+
+  getBlogs() {
+    this.blogService.getAllBlogs().subscribe((response: any) => {
+      console.log(response);
+      this.blogs = response;
+    },(error:any)=>{
+      console.error(error);
+    })
+  }
+
+  editBlog() {
+
+  }
+
+  private getUserInfo() {
+    if(sessionStorage.getItem('UserInfo')){
+      this.userInfo = (sessionStorage.getItem('UserInfo'));
+      this.userInfo = JSON.parse(this.userInfo);
+    }
   }
 }

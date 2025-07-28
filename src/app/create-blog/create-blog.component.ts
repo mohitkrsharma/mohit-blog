@@ -57,11 +57,15 @@ export class CreateBlogComponent implements OnInit{
       }
       this.blogService.createBlog(payload).subscribe((response: any) => {
         this.toastr.success('Success!', 'Blog created successfully!');
-        this.createEditBlogForm.reset();
+        setTimeout(() => {
+          this.createEditBlogForm.reset();
+        }, 1000); // 1 second delay to ensure toastr is visible
       }, (error: any) => {
         console.error(error);
         this.toastr.error('Error!', error?.error?.message || 'Something went wrong');
-        this.createEditBlogForm.reset();
+        setTimeout(() => {
+          this.createEditBlogForm.reset();
+        }, 1000); // 1 second delay to ensure toastr is visible
       })
     } else {
       this.snackBar.open('Please check your input and try again', 'Close', {duration: 3000});
