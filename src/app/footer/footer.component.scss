@@ -1,27 +1,72 @@
 .footer-section{
   background-color: #27282c;
+  padding-bottom: 2rem; /* Add padding to the bottom */
+  width: 100%; /* Ensure footer takes full width */
   h2,hr,i{
     color: #ffffff;
   }
   ul{
     display: flex;
     gap: 3rem;
+    padding-left: 0; /* Remove default padding */
+    justify-content: center; /* Center icons on mobile */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
   }
   ul li{
     list-style: none;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    ul {
+      gap: 2rem; /* Reduce gap on smaller screens */
+    }
+  }
+
+  @media (max-width: 480px) {
+    ul {
+      gap: 1.5rem; /* Further reduce gap on mobile */
+    }
   }
 }
 .social-media-icons{
   width: 70%;
   margin: 0 auto;
   padding-top: 2rem;
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    width: 85%; /* Increase width on tablet */
+  }
+
+  @media (max-width: 480px) {
+    width: 90%; /* Further increase width on mobile */
+  }
 }
 .copyright-p{
   color: #ffffff;
   text-align: center;
   font-weight: 300;
+  padding: 1rem 1rem 0; /* Add padding for better spacing */
+  margin-bottom: 0; /* Remove bottom margin to prevent extra space */
+
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    font-size: 1.4rem; /* Slightly smaller font on mobile */
+  }
 }
 .hr-line{
   margin-top: 3rem;
   margin-bottom: 3rem;
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
 }

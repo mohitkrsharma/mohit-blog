@@ -46,6 +46,9 @@
 }
 .blogger-name,.blog-date{
   color: #8C8C8D;
+  font-size: 1.2rem !important;
+  font-weight: lighter;
+  vertical-align: middle
 }
 .ellipsis-p{
   overflow: hidden;
@@ -63,12 +66,24 @@
 }
 .edit-icon,.delete-icon{
   color: #858585;
-  height: 1.5rem;
-  width: 1.5rem;
   vertical-align: middle;
   overflow: unset;
+  font-size: 1.5rem;
 }
 .icons-div{
   display: flex;
-  gap: 1.25rem;
+}
+.edit-icon:hover,.delete-icon:hover{
+  cursor: pointer;
+}
+.empty-blogs-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.visible-icon,.no-blogs-p{
+  color: #858585;
+}
+.blog-card-title:hover{
+  cursor: pointer;
 }

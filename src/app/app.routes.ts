@@ -3,6 +3,7 @@ import {LandingComponent} from './landing/landing.component';
 import {CreateBlogComponent} from './create-blog/create-blog.component';
 import {LoginRegisterComponent} from './login-register/login-register.component';
 import {authGuard} from './guard/auth.guard';
+import {ShowBlogComponent} from './show-blog/show-blog.component';
 
 export const routes: Routes = [
   {path:'', component: LandingComponent},
@@ -10,5 +11,6 @@ export const routes: Routes = [
   {path: 'login', component: LoginRegisterComponent},
   {path: 'register', component: LoginRegisterComponent},
   {path: 'forgot-password', component: LoginRegisterComponent},
-  {path: 'user/:id/edit-blog', component: CreateBlogComponent, canActivate: [authGuard]}
+  {path: 'user/:id/edit-blog', component: CreateBlogComponent, canActivate: [authGuard]},
+  {path: 'user/:userId/blog/:blogId', component: ShowBlogComponent, canActivate: [authGuard]}
 ];

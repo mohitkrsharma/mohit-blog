@@ -11,7 +11,7 @@
     <div class="col-md-3 col-lg-3" *ngFor="let blog of blogs?.data">
       <mat-card class="example-card" appearance="outlined">
         <mat-card-header>
-          <mat-card-title>{{ blog.title }}</mat-card-title>
+          <mat-card-title (click)="openBlog(blog)" class="blog-card-title">{{ blog.title }}</mat-card-title>
         </mat-card-header>
         <img mat-card-image src="{{blog.featuredImage}}" alt="Photo of a Shiba Inu">
         <mat-card-content class="blog-mat-card-content">
@@ -26,14 +26,18 @@
               <div class="date-delete-edit-div">
                 <span class="blog-date">{{blog.createdAt | date: 'dd-MMM-yyyy'}}</span>
                 <div class="icons-div" *ngIf="userInfo && userInfo.success === true && (userInfo.data.email === blog.author.email || userInfo.userType === 'admin')">
-                  <mat-icon class="edit-icon" (click)="editBlog()">edit</mat-icon>
-                  <mat-icon class="delete-icon" (click)="deleteBlog()">delete</mat-icon>
+                  <mat-icon class="edit-icon" (click)="editBlog()" matTooltip="Edit">edit</mat-icon>
+                  <mat-icon class="delete-icon" (click)="deleteBlog()" matTooltip="Delete">delete</mat-icon>
                 </div>
               </div>
             </div>
           </div>
         </mat-card-actions>
       </mat-card>
+    </div>
+    <div class="empty-blogs-div" *ngIf="blogs?.data.length === 0">
+      <mat-icon class="visible-icon">visibility</mat-icon>
+      <p class="no-blogs-p">No blogs found</p>
     </div>
   </div>
 </div>

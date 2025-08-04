@@ -14,6 +14,8 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
 import {ToastrService} from 'ngx-toastr';
 import {BlogService} from '../service/blog.service';
+import {MatTooltip} from '@angular/material/tooltip';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -28,7 +30,8 @@ import {BlogService} from '../service/blog.service';
     ReactiveFormsModule,
     FormsModule,
     MatIcon,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltip,
   ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
@@ -39,7 +42,7 @@ export class LandingComponent implements OnInit {
   searchBlogInput: any;
   blogs: any;
   userInfo:any;
-  constructor(private dialog: MatDialog,private toastr: ToastrService, private blogService: BlogService) {
+  constructor(private dialog: MatDialog,private toastr: ToastrService, private blogService: BlogService,private router: Router) {
   }
 
   ngOnInit(): void {
@@ -86,6 +89,15 @@ export class LandingComponent implements OnInit {
     if(sessionStorage.getItem('UserInfo')){
       this.userInfo = (sessionStorage.getItem('UserInfo'));
       this.userInfo = JSON.parse(this.userInfo);
+    }
+  }
+
+  openBlog(blog: any) {
+    if(!this.userInfo){
+      this.toastr.error('Please login to view the blog');
+    }
+    else{
+      this.router.navigate([`user/${this.userInfo.data._id}/blog/${blog._id}`]);
     }
   }
 }
