@@ -1,5 +1,11 @@
 <div class="container mt-4">
   <div class="row">
+    <div class="back-btn-div">
+      <button mat-button class="mat-primary" (click)="navigateToLanding()">
+        <mat-icon class="back-icon">arrow_back</mat-icon>
+        <span class="back">Back</span>
+      </button>
+    </div>
     <div class="col-12">
       <h1 class="edit-create-blog-h1">{{pageName === 'create-blog' ? 'Create Blog' : 'Edit Blog'}}</h1>
     </div>

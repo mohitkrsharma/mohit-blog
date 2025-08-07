@@ -16,6 +16,7 @@ import {ToastrService} from 'ngx-toastr';
 import {BlogService} from '../service/blog.service';
 import {MatTooltip} from '@angular/material/tooltip';
 import {Router} from '@angular/router';
+import {MatInput} from '@angular/material/input';
 
 @Component({
   selector: 'app-landing',
@@ -32,6 +33,7 @@ import {Router} from '@angular/router';
     MatIcon,
     MatDialogModule,
     MatTooltip,
+    MatInput,
   ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
@@ -52,7 +54,9 @@ export class LandingComponent implements OnInit {
   }
 
   searchBlog(searchBlogInput: any) {
+    if(searchBlogInput.length > 0){
 
+    }
   }
 
   deleteBlog() {

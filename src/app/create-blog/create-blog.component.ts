@@ -79,4 +79,8 @@ export class CreateBlogComponent implements OnInit{
       this.snackBar.open('Please check your input and try again', 'Close', {duration: 3000});
     }
   }
+
+  navigateToLanding() {
+    this.router.navigate(['/']);
+  }
 }
