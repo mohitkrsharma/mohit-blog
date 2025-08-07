@@ -7,6 +7,7 @@ import {MatIcon} from '@angular/material/icon';
 import {MatButton} from '@angular/material/button';
 import {NgIf} from '@angular/common';
 import {MatTooltip} from '@angular/material/tooltip';
+import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,10 @@ import {MatTooltip} from '@angular/material/tooltip';
     MatIcon,
     MatButton,
     NgIf,
-    MatTooltip
+    MatTooltip,
+    MatMenu,
+    MatMenuTrigger,
+    MatMenuItem
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -66,5 +70,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   navigateToCreateBlog() {
     this.router.navigate([`user/${JSON.parse(<string>sessionStorage.getItem('UserInfo')).data._id}/create-blog`]);
+  }
+
+  resetPassword() {
+
   }
 }

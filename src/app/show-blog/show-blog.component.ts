@@ -1,17 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogService} from '../service/blog.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgIf} from '@angular/common';
 import {MatIcon} from '@angular/material/icon';
 import {ParagraphPipe} from '../pipes/paragraph.pipe';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-show-blog',
   imports: [
     MatIcon,
     NgIf,
-    ParagraphPipe
+    ParagraphPipe,
+    MatButton
   ],
   templateUrl: './show-blog.component.html',
   styleUrl: './show-blog.component.scss'
@@ -23,7 +25,8 @@ export class ShowBlogComponent implements OnInit {
 
   constructor(private blogService: BlogService,
               private route: ActivatedRoute,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private router: Router) {
     this.route.params.subscribe(params => {
       this.blogId = params['blogId'];
       this.userId = params['userId'];
@@ -42,5 +45,9 @@ export class ShowBlogComponent implements OnInit {
       console.error(error);
       this.toastr.error('Error!', error?.error?.message || 'Something went wrong');
     });
+  }
+
+  navigateToLanding() {
+    this.router.navigate(['/']);
   }
 }
