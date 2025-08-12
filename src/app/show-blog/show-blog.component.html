@@ -6,6 +6,16 @@
     </button>
   </div>
   <h1 class="mb-4 blog-title-h1">{{blogData?.title}}</h1>
+  <div class="blog-author-div mb-3">
+    <img src="{{blogData.author.profilePic}}" alt="Profile Pic" class="profile-pic">
+    <div>
+      <p class="mb-0 blogger-name">{{ blogData.author.firstName + ' ' + blogData.author.lastName }}</p>
+      <p class="mb-0 created-at"> {{blogData.createdAt | date: 'dd-MMM-yyyy'}}</p>
+    </div>
+  </div>
+  <div class="image-container">
+    <img mat-card-image src="{{blogData.featuredImage}}" class="blog-content-image" alt="blog-content-image">
+  </div>
   <p class="blog-content-p" [innerHTML]="blogData.content | paragraph"></p>
 </div>
 <div class="no-blog-data-div" *ngIf="!blogData">

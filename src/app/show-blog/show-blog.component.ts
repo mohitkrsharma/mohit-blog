@@ -2,10 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {BlogService} from '../service/blog.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {NgIf} from '@angular/common';
+import {DatePipe, NgIf} from '@angular/common';
 import {MatIcon} from '@angular/material/icon';
 import {ParagraphPipe} from '../pipes/paragraph.pipe';
 import {MatButton} from '@angular/material/button';
+import {MatCardImage} from '@angular/material/card';
 
 @Component({
   selector: 'app-show-blog',
@@ -13,7 +14,9 @@ import {MatButton} from '@angular/material/button';
     MatIcon,
     NgIf,
     ParagraphPipe,
-    MatButton
+    MatButton,
+    MatCardImage,
+    DatePipe
   ],
   templateUrl: './show-blog.component.html',
   styleUrl: './show-blog.component.scss'

@@ -36,3 +36,32 @@
   justify-content: end;
   align-items: center;
 }
+
+.image-container{
+  display: flex;
+  justify-content: center;
+}
+
+.blog-content-image{
+  width: 100%;
+  height: auto;
+}
+
+.profile-pic{
+  border-radius: 50%;
+  height: 5rem;
+  width: auto;
+}
+
+.blog-author-div{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.blogger-name,.created-at{
+  color: #8C8C8D;
+  font-size: 1.2rem !important;
+  font-weight: lighter;
+  vertical-align: middle
+}
