@@ -73,6 +73,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   resetPassword() {
-
+    this.router.navigate(['/reset-password']);
   }
 }

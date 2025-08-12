@@ -11,6 +11,7 @@ export const routes: Routes = [
   {path: 'login', component: LoginRegisterComponent},
   {path: 'register', component: LoginRegisterComponent},
   {path: 'forgot-password', component: LoginRegisterComponent},
+  {path: 'reset-password', loadComponent: () => import('./reset-password/reset-password.component').then(m => m.ResetPasswordComponent), canActivate: [authGuard]},
   {path: 'user/:id/edit-blog', component: CreateBlogComponent, canActivate: [authGuard]},
   {path: 'user/:userId/blog/:blogId', component: ShowBlogComponent, canActivate: [authGuard]}
 ];

@@ -35,4 +35,8 @@ export class AuthService {
   login(params: object) {
     return this.http.post(this.apiUrl + '/login', params);
   }
+
+  resetPassword(params: object) {
+    return this.http.post(this.apiUrl + '/reset-password', params);
+  }
 }
