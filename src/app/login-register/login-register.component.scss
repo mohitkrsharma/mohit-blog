@@ -116,3 +116,52 @@ mat-card-content {
 .file-upload-msg{
   color: darkcyan;
 }
+
+.password-strength {
+  margin-top: 5px;
+
+  .strength-bar {
+    height: 4px;
+    background-color: #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+
+    .strength-fill {
+      height: 100%;
+      transition: width 0.3s ease;
+
+      &.strength-weak {
+        background-color: #f44336;
+      }
+
+      &.strength-medium {
+        background-color: #ff9800;
+      }
+
+      &.strength-strong {
+        background-color: #4caf50;
+      }
+    }
+  }
+
+  .strength-text {
+    font-size: 12px;
+    margin-top: 2px;
+    display: inline-block;
+  }
+}
+
+.error-messages {
+  margin-top: 5px;
+
+  .error-text {
+    color: #f44336;
+    font-size: 12px;
+    display: block;
+    margin-top: 2px;
+  }
+}
+
+.form-control-padding.error {
+  border-color: #f44336;
+}

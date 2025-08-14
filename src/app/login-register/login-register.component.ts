@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors} from '@angular/forms';
 import {Router} from '@angular/router';
 import {NgIf} from '@angular/common';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthService} from '../service/auth.service';
 import {ToastrService} from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login-register',
   imports: [
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    CommonModule
   ],
   templateUrl: './login-register.component.html',
   styleUrl: './login-register.component.scss'
@@ -34,13 +36,19 @@ export class LoginRegisterComponent implements OnInit{
     });
 
     this.registrationForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       reg_re_email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      reg_re_password: ['', Validators.required]
-    })
+      password: ['', [
+        Validators.required,
+        Validators.minLength(8),
+        this.passwordStrengthValidator
+      ]],
+      reg_re_password: ['', [Validators.required]]
+    }, {
+      validators: [this.passwordsMatchValidator, this.emailsMatchValidator]
+    });
 
     this.forgotPasswordForm = this.fb.group({
       f_email: ['', [Validators.required, Validators.email]]
@@ -91,53 +99,126 @@ export class LoginRegisterComponent implements OnInit{
   }
 
 
-  registerUser() {
-    // Prevent multiple submissions
-    if (this.isSubmitting) {
-      return;
-    }
+  registerUser(): void {
+  if (this.isSubmitting) return;
 
-    if (this.registrationForm.valid) {
-      const formValues = this.registrationForm.value;
+  // Mark all fields as touched to show validation errors
+  this.registrationForm.markAllAsTouched();
 
-      if (formValues.email !== formValues.reg_re_email) {
-        this.snackBar.open('Email addresses do not match', 'Close', {duration: 3000});
-        return;
-      }
-
-      if (formValues.password !== formValues.reg_re_password) {
-        this.snackBar.open('Passwords do not match', 'Close', {duration: 3000});
-        return;
-      }
-
-
-      // Create a FormData object to send both form values and file
-      const formData = new FormData();
-
-      // Add form values to FormData
-      formData.append('firstName', formValues.firstName);
-      formData.append('lastName', formValues.lastName);
-      formData.append('email', formValues.email);
-      formData.append('password', formValues.password);
-
-
-      // Set submitting a flag to prevent multiple submissions
-      this.isSubmitting = true;
-
-      this.authService.register(formData).subscribe(
-        (response: any) => {
-          debugger;
-          this.toastr.success('Success!', response.message);
-          this.router.navigate(['/login']);
-          this.isSubmitting = false;
-        },
-        (error: any) => {
-          this.toastr.error('Error!', error.error.message);
-          this.isSubmitting = false;
-        }
-      );
-    } else {
-      this.snackBar.open('Please fill all required fields correctly', 'Close', {duration: 3000});
-    }
+  if (this.registrationForm.invalid) {
+    this.toastr.error('Please fix all validation errors before submitting');
+    return;
   }
+
+  this.isSubmitting = true;
+
+  const formData = this.registrationForm.value;
+
+  // Call registration API
+  this.authService.register(formData).subscribe({
+    next: (response) => {
+      this.toastr.success('Registration successful!');
+      this.router.navigate(['/login']);
+      this.isSubmitting = false;
+    },
+    error: (error) => {
+      this.toastr.error(error?.error?.message || 'Registration failed');
+      this.isSubmitting = false;
+    }
+  });
+}
+private passwordStrengthValidator = (control: AbstractControl): ValidationErrors | null => {
+  const password = control.value;
+
+  if (!password) {
+    return null; // Let required validator handle empty values
+  }
+
+  const errors: ValidationErrors = {};
+
+  // Check minimum length
+  if (password.length < 8) {
+    errors['minLength'] = true;
+  }
+
+  // Check for at least one uppercase letter
+  if (!/[A-Z]/.test(password)) {
+    errors['uppercase'] = true;
+  }
+
+  // Check for at least one lowercase letter
+  if (!/[a-z]/.test(password)) {
+    errors['lowercase'] = true;
+  }
+
+  // Check for at least one number
+  if (!/[0-9]/.test(password)) {
+    errors['number'] = true;
+  }
+
+  // Check for at least one special character
+  if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+    errors['specialChar'] = true;
+  }
+
+  // Check for common weak passwords
+  const weakPasswords = ['password', '12345678', 'qwerty', 'abc123'];
+  if (weakPasswords.some(weak => password.toLowerCase().includes(weak))) {
+    errors['weakPassword'] = true;
+  }
+
+  return Object.keys(errors).length > 0 ? errors : null;
+};
+private passwordsMatchValidator = (group: AbstractControl): ValidationErrors | null => {
+  const password = group.get('password')?.value;
+  const confirmPassword = group.get('reg_re_password')?.value;
+
+  if (password && confirmPassword && password !== confirmPassword) {
+    return { passwordsMismatch: true };
+  }
+  return null;
+};
+private emailsMatchValidator = (group: AbstractControl): ValidationErrors | null => {
+  const email = group.get('email')?.value;
+  const confirmEmail = group.get('reg_re_email')?.value;
+
+  if (email && confirmEmail && email !== confirmEmail) {
+    return { emailsMismatch: true };
+  }
+  return null;
+};
+
+// Check if password has specific error
+hasPasswordError(errorType: string): boolean {
+  const passwordControl = this.registrationForm.get('password');
+  return !!(passwordControl?.hasError(errorType) && passwordControl?.touched);
+}
+
+// Check if passwords match
+get passwordsMismatch(): boolean {
+  return !!(this.registrationForm.hasError('passwordsMismatch') &&
+            this.registrationForm.get('reg_re_password')?.touched);
+}
+
+// Get password strength percentage
+getPasswordStrength(): number {
+  const password = this.registrationForm.get('password')?.value || '';
+  let strength = 0;
+
+  if (password.length >= 8) strength += 20;
+  if (/[A-Z]/.test(password)) strength += 20;
+  if (/[a-z]/.test(password)) strength += 20;
+  if (/[0-9]/.test(password)) strength += 20;
+  if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) strength += 20;
+
+  return strength;
+}
+
+// Get password strength label
+getPasswordStrengthLabel(): string {
+  const strength = this.getPasswordStrength();
+  if (strength < 40) return 'Weak';
+  if (strength < 80) return 'Medium';
+  return 'Strong';
+}
 }
