@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -36,7 +36,15 @@ export class AuthService {
     return this.http.post(this.apiUrl + '/login', params);
   }
 
-  resetPassword(params: object) {
-    return this.http.post(this.apiUrl + '/reset-password', params);
+  resetPassword(params: { newPassword: string; confirmNewPassword?: string }) {
+    const token = sessionStorage.getItem('auth_token');
+    const headers = token
+      ? new HttpHeaders({
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        })
+      : new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.put(this.apiUrl + '/reset-password', params, { headers });
   }
 }
