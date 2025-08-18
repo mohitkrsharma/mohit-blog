@@ -95,9 +95,35 @@ export class LoginRegisterComponent implements OnInit{
   }
 
   forgotPassword(){
+    // Navigation to forgot password page from login view
     this.router.navigate(['/forgot-password']).then(() =>{} );
   }
 
+  onForgotPasswordSubmit(): void {
+    if (this.forgotPasswordForm.invalid) {
+      this.toastr.error('Please enter a valid email');
+      return;
+    }
+
+    const email = this.forgotPasswordForm.get('f_email')?.value;
+    this.isSubmitting = true;
+
+    this.authService.forgotPassword(email).subscribe({
+      next: (response: any) => {
+        const msg = response?.message || 'Password reset email sent';
+        this.toastr.success('Success!', msg);
+        this.isSubmitting = false;
+        this.forgotPasswordForm.reset();
+        // Optionally navigate back to login after request
+        this.router.navigate(['/login']).then(() =>{} );
+      },
+      error: (error: any) => {
+        const msg = error?.error?.message || 'Failed to send password reset email';
+        this.toastr.error('Error!', msg);
+        this.isSubmitting = false;
+      }
+    });
+  }
 
   registerUser(): void {
   if (this.isSubmitting) return;

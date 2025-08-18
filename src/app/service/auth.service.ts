@@ -47,4 +47,10 @@ export class AuthService {
 
     return this.http.put(this.apiUrl + '/reset-password', params, { headers });
   }
+
+  // Request password reset email
+  forgotPassword(email: string) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(this.apiUrl + '/forgot-password', { email }, { headers });
+  }
 }

@@ -139,7 +139,7 @@
       <p class="register-p"><small>Already have an account? <a (click)="login()">Login</a></small></p>
     </form>
 
-    <form [formGroup]="forgotPasswordForm" (ngSubmit)="forgotPassword()" class="login-form" *ngIf="pageName === 'forgot-password'">
+    <form [formGroup]="forgotPasswordForm" (ngSubmit)="onForgotPasswordSubmit()" class="login-form" *ngIf="pageName === 'forgot-password'">
       <h2 class="login-register-h2">Forgot Password</h2>
       <div class="form-group">
         <div class="input-wrapper">
