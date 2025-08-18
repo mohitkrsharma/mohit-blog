@@ -117,3 +117,152 @@
 .blog-card-title:hover{
   cursor: pointer;
 }
+
+.card-profile-pic{
+  width: 4rem;
+  height: 4rem;
+}
+.user-img{
+  height: 5rem;
+  width: 5rem;
+}
+.blog-user-details{
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+.user-blog-details-date{
+  width: 100%;
+}
+.search-input{
+  width: 100%;
+}
+.input-icon-wrapper {
+  position: relative;
+}
+
+.input-icon-wrapper .form-control {
+  padding-left: 2.5rem; /* space for the icon */
+}
+
+.input-icon-wrapper .bi {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  color: #6c757d; /* optional: adjust icon color */
+  pointer-events: none; /* allows clicks to pass through to input */
+}
+.bi-search:hover{
+  cursor: pointer;
+}
+.btn-row{
+  display: flex;
+  justify-content: flex-end;
+}
+.date-delete-edit-div{
+  display: flex;
+  justify-content: space-between;
+}
+.blogger-name,.blog-date{
+  color: #8C8C8D;
+  font-size: 1.2rem !important;
+  font-weight: lighter;
+  vertical-align: middle
+}
+.ellipsis-p{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  font-weight: lighter;
+  vertical-align: middle;
+}
+.blog-mat-card-content{
+  padding: 0 !important;
+}
+.card-row-divs{
+  padding-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card-row-divs .col-md-3 {
+  display: flex;
+  margin-bottom: 2rem;
+}
+.example-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+.example-card mat-card-header {
+  min-height: 4rem;
+  display: flex;
+  align-items: flex-start;
+}
+.example-card mat-card-content {
+  flex-grow: 1;
+}
+.blog-card-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  height: 2.8em; /* 2 lines × 1.4 line-height */
+  width: 100%;
+}
+.edit-icon,.delete-icon{
+  color: #858585;
+  vertical-align: middle;
+  overflow: unset;
+  font-size: 1.5rem;
+}
+.icons-div{
+  display: flex;
+}
+.edit-icon:hover,.delete-icon:hover{
+  cursor: pointer;
+}
+.empty-blogs-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.visible-icon,.no-blogs-p{
+  color: #858585;
+}
+.blog-card-title:hover{
+  cursor: pointer;
+}
+
+/* Image skeleton and aspect ratio wrapper to avoid layout shift */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Reserve space for the image */
+  overflow: hidden;
+}
+
+/* Subtle shimmer placeholder visible until image paints */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 37%, #f0f0f0 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+.image-wrapper img[mat-card-image] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

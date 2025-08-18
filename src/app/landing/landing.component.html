@@ -13,7 +13,9 @@
         <mat-card-header>
           <mat-card-title (click)="openBlog(blog)" class="blog-card-title">{{ blog.title }}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image src="{{blog.featuredImage}}" alt="Photo of a Shiba Inu">
+        <div class="image-wrapper skeleton">
+          <img mat-card-image [src]="blog.featuredImage" [alt]="blog.title || 'Blog image'" loading="lazy" decoding="async">
+        </div>
         <mat-card-content class="blog-mat-card-content">
           <p class="ellipsis-p">{{blog.content}}</p>
         </mat-card-content>
