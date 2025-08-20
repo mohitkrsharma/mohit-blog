@@ -57,7 +57,8 @@ export class AuthService {
   // Token-based: reset password with token
   resetPasswordWithToken(token: string, params: { email: string; newPassword: string; confirmNewPassword?: string }) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.put(this.apiUrl + `/reset-password/${token}`, params, { headers });
+    let token_val = token.split('/').pop()
+    return this.http.put(this.apiUrl + `/reset-password/${token_val}`, params, { headers });
   }
 
   // Request password reset email
