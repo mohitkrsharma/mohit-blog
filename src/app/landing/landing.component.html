@@ -7,7 +7,7 @@
       </div>
     </div>
   </div>
-  <div class="row justify-content-center card-row-divs">
+  <div class="row justify-content-center card-row-divs" *ngIf="blogs?.data.length>0">
     <div class="col-md-3 col-lg-3" *ngFor="let blog of blogs?.data">
       <mat-card class="example-card" appearance="outlined">
         <mat-card-header>
@@ -27,9 +27,9 @@
               <p class="mb-0 blogger-name">{{ blog.author.firstName + ' ' + blog.author.lastName }}</p>
               <div class="date-delete-edit-div">
                 <span class="blog-date">{{blog.createdAt | date: 'dd-MMM-yyyy'}}</span>
-                <div class="icons-div" *ngIf="userInfo && userInfo.success === true && (userInfo.data.email === blog.author.email || userInfo.userType === 'admin')">
-                  <mat-icon class="edit-icon" (click)="editBlog()" matTooltip="Edit">edit</mat-icon>
-                  <mat-icon class="delete-icon" (click)="deleteBlog()" matTooltip="Delete">delete</mat-icon>
+                <div class="icons-div" *ngIf="userInfo && userInfo.success === true && (userInfo.data.email === blog.author.email || userInfo.data.userType === 'admin')">
+                  <mat-icon class="edit-icon" (click)="editBlog(blog)" matTooltip="Edit">edit</mat-icon>
+                  <mat-icon class="delete-icon" (click)="deleteBlog(blog._id)" matTooltip="Delete">delete</mat-icon>
                 </div>
               </div>
             </div>

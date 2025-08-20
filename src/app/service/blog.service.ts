@@ -19,4 +19,8 @@ export class BlogService {
    getBlogById(blogId: string){
     return this.http.get(this.apiUrl + `/blogs/${blogId}`);
    }
+
+   deleteBlogById(blogId: any){
+    return this.http.delete(this.apiUrl + `/blogs/${blogId}`);
+   }
 }

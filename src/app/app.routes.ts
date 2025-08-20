@@ -15,6 +15,6 @@ export const routes: Routes = [
   {path: 'reset-password/:token', loadComponent: () => import('./reset-password/reset-password.component').then(m => m.ResetPasswordComponent)},
   // Logged-in user password change (kept for backward compatibility)
   {path: 'reset-password', loadComponent: () => import('./reset-password/reset-password.component').then(m => m.ResetPasswordComponent), canActivate: [authGuard]},
-  {path: 'user/:id/edit-blog', component: CreateBlogComponent, canActivate: [authGuard]},
+  {path: 'user/:id/edit-blog/:blog-id', component: CreateBlogComponent, canActivate: [authGuard]},
   {path: 'user/:userId/blog/:blogId', component: ShowBlogComponent, canActivate: [authGuard]}
 ];

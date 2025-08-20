@@ -59,7 +59,7 @@ export class LandingComponent implements OnInit {
     }
   }
 
-  deleteBlog() {
+  deleteBlog(blogId: string) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         title: 'Delete Blog',
@@ -69,8 +69,14 @@ export class LandingComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        // Perform delete operation here
-        this.toastr.warning('Blog deleted successfully!');
+        this.blogService.deleteBlogById(blogId).subscribe((result) => {
+          // Perform delete operation here
+          this.toastr.success('Blog deleted successfully!');
+          this.ngOnInit();
+        },(error) => {
+          console.error(error);
+          this.toastr.error('Something went wrong!');
+        });
       }
       // If result is false or undefined, do nothing (user cancelled)
     });
@@ -85,8 +91,8 @@ export class LandingComponent implements OnInit {
     })
   }
 
-  editBlog() {
-
+  editBlog(blog:any) {
+    this.router.navigate([`user/${blog.author._id}/edit-blog/${blog._id}`]);
   }
 
   private getUserInfo() {
