@@ -48,6 +48,18 @@ export class AuthService {
     return this.http.put(this.apiUrl + '/reset-password', params, { headers });
   }
 
+  // Token-based: verify reset token and get email
+  verifyResetToken(token: string) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get(this.apiUrl + `/reset-password/${token}`, { headers });
+  }
+
+  // Token-based: reset password with token
+  resetPasswordWithToken(token: string, params: { email: string; newPassword: string; confirmNewPassword?: string }) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put(this.apiUrl + `/reset-password/${token}`, params, { headers });
+  }
+
   // Request password reset email
   forgotPassword(email: string) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
