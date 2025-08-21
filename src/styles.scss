@@ -1,34 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-/* Import only essential Bootstrap components instead of the entire library */
-@use 'bootstrap/scss/functions';
-@use 'bootstrap/scss/variables';
-@use 'bootstrap/scss/mixins';
-@use 'bootstrap/scss/root';
-@use 'bootstrap/scss/reboot';
-@use 'bootstrap/scss/type';
-@use 'bootstrap/scss/images';
-@use 'bootstrap/scss/containers';
-@use 'bootstrap/scss/grid';
-@use 'bootstrap/scss/utilities';
-@use 'bootstrap/scss/buttons';
-@use 'bootstrap/scss/forms';
-/* Add other specific Bootstrap components as needed */
 
-/* Import Bootstrap Icons */
+/* Import Bootstrap using modern @use syntax */
+@use 'bootstrap/scss/bootstrap';
+
+/* For CSS files, @import is still acceptable and widely used */
 @import 'bootstrap-icons/font/bootstrap-icons.css';
-
-/* Import Merriweather font */
 @import '@fontsource/merriweather/400.css';
 @import '@fontsource/merriweather/700.css';
-
-/* Import only the Lora weights you use */
 @import '@fontsource/lora/400.css';
 @import '@fontsource/lora/600.css';
-
-/* Use a more minimal Material theme or only import what you need */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
-
-/* Import Material Icons */
 @import 'material-icons/iconfont/material-icons.css';
 
 /* Global styles */
@@ -38,7 +19,8 @@ html, body {
 }
 body {
   font-size: 1.6rem; /* Reset body text to 16px equivalent (1.6rem = 16px) */
-  margin: 0; font-family: 'Lora', serif;
+  margin: 0;
+  font-family: 'Lora', serif;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Merriweather', serif;
