@@ -1,13 +1,11 @@
 <div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-sm-6 col-md-6 col-lg-6 mb-4 mb-lg-0 mb-xl-4 mx-auto text-center">
-      <div class="col-sm-6 col-md-6 col-lg-6 mb-4 mb-lg-0 mb-xl-4 mx-auto text-center">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Search blogs</mat-label>
-          <input type="text" id="searchBlog" name="searchBlog" matInput [(ngModel)]="searchBlogInput">
-          <mat-icon matIconSuffix class="search-icon" (click)="searchBlog(searchBlogInput)">search</mat-icon>
-        </mat-form-field>
-      </div>
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Search blogs</mat-label>
+        <input type="text" id="searchBlog" name="searchBlog" matInput [(ngModel)]="searchBlogInput" (input)="onSearchInputChange($event)">
+        <mat-icon matIconSuffix class="search-icon" (click)="searchBlog(searchBlogInput)">search</mat-icon>
+      </mat-form-field>
     </div>
   </div>
   <div class="row justify-content-center card-row-divs" *ngIf="blogs?.data?.length >= 0">

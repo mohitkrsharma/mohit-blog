@@ -14,11 +14,19 @@ export class BlogService {
     return this.http.post(this.apiUrl + '/blogs', params);
   }
 
-  getAllBlogs(page?: number, limit?: number) {
-    const params: any = {};
-    if (page != null) params.page = page;
-    if (limit != null) params.limit = limit;
-    return this.http.get(this.apiUrl + '/blogs', { params });
+  getAllBlogs(page?: number, limit?: number, searchQuery?: string) {
+    let params = '';
+    const queryParams = [];
+
+    if (page) queryParams.push(`page=${page}`);
+    if (limit) queryParams.push(`limit=${limit}`);
+    if (searchQuery && searchQuery.trim()) queryParams.push(`q=${encodeURIComponent(searchQuery.trim())}`);
+
+    if (queryParams.length > 0) {
+      params = '?' + queryParams.join('&');
+    }
+
+    return this.http.get(this.apiUrl + '/blogs' + params);
   }
 
   getBlogById(blogId: string) {
