@@ -1,22 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
-/* Import Bootstrap */
-@use 'bootstrap/scss/bootstrap' as *;
+/* Import only essential Bootstrap components instead of the entire library */
+@use 'bootstrap/scss/functions';
+@use 'bootstrap/scss/variables';
+@use 'bootstrap/scss/mixins';
+@use 'bootstrap/scss/root';
+@use 'bootstrap/scss/reboot';
+@use 'bootstrap/scss/type';
+@use 'bootstrap/scss/images';
+@use 'bootstrap/scss/containers';
+@use 'bootstrap/scss/grid';
+@use 'bootstrap/scss/utilities';
+@use 'bootstrap/scss/buttons';
+@use 'bootstrap/scss/forms';
+/* Add other specific Bootstrap components as needed */
 
 /* Import Bootstrap Icons */
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
 /* Import Merriweather font */
-@import '@fontsource/merriweather/300.css';
 @import '@fontsource/merriweather/400.css';
 @import '@fontsource/merriweather/700.css';
-@import '@fontsource/merriweather/900.css';
 
-/* Import Lora font */
+/* Import only the Lora weights you use */
 @import '@fontsource/lora/400.css';
-@import '@fontsource/lora/500.css';
 @import '@fontsource/lora/600.css';
-@import '@fontsource/lora/700.css';
-/* Import Angular Material theme */
+
+/* Use a more minimal Material theme or only import what you need */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 /* Import Material Icons */
