@@ -7,7 +7,7 @@
       </div>
     </div>
   </div>
-  <div class="row justify-content-center card-row-divs" *ngIf="blogs?.data.length>0">
+  <div class="row justify-content-center card-row-divs" *ngIf="blogs?.data?.length >= 0">
     <div class="col-md-3 col-lg-3" *ngFor="let blog of blogs?.data">
       <mat-card class="example-card" appearance="outlined">
         <mat-card-header>
@@ -37,9 +37,16 @@
         </mat-card-actions>
       </mat-card>
     </div>
-    <div class="empty-blogs-div" *ngIf="blogs?.data.length === 0">
+
+    <!-- Empty state (only when not loading and nothing loaded) -->
+    <div class="empty-blogs-div" *ngIf="!isLoading && blogs?.data?.length === 0">
       <mat-icon class="visible-icon">visibility</mat-icon>
       <p class="no-blogs-p">No blogs found</p>
+    </div>
+
+    <!-- Infinite scroll loader -->
+    <div class="infinite-loader" *ngIf="isLoading">
+      <span class="loader" aria-label="loading" role="status"></span>
     </div>
   </div>
 </div>

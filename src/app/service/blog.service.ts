@@ -14,8 +14,11 @@ export class BlogService {
     return this.http.post(this.apiUrl + '/blogs', params);
   }
 
-  getAllBlogs() {
-    return this.http.get(this.apiUrl + '/blogs');
+  getAllBlogs(page?: number, limit?: number) {
+    const params: any = {};
+    if (page != null) params.page = page;
+    if (limit != null) params.limit = limit;
+    return this.http.get(this.apiUrl + '/blogs', { params });
   }
 
   getBlogById(blogId: string) {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, HostListener} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   MatCard,
@@ -42,14 +42,20 @@ export class LandingComponent implements OnInit {
   protected readonly Date = Date;
   blogFormControl!: FormControl;
   searchBlogInput: any;
-  blogs: any;
+  blogs: any = { data: [], pagination: null };
   userInfo:any;
+  page = 1;
+  limit = 10;
+  isLoading = false;
+  hasMore = true;
+  private bottomThreshold = 200; // px before bottom to trigger
+
   constructor(private dialog: MatDialog,private toastr: ToastrService, private blogService: BlogService,private router: Router) {
   }
 
   ngOnInit(): void {
     this.blogFormControl = new FormControl('');
-    this.getBlogs();
+    this.loadNextPage();
     this.getUserInfo();
   }
 
@@ -82,13 +88,36 @@ export class LandingComponent implements OnInit {
     });
   }
 
-  getBlogs() {
-    this.blogService.getAllBlogs().subscribe((response: any) => {
-      console.log(response);
-      this.blogs = response;
-    },(error:any)=>{
+  private loadNextPage() {
+    if (this.isLoading || !this.hasMore) return;
+    this.isLoading = true;
+    this.blogService.getAllBlogs(this.page, this.limit).subscribe((response: any) => {
+      const incoming = response?.data || [];
+      // Append new blogs
+      this.blogs.data = [...(this.blogs.data || []), ...incoming];
+      this.blogs.pagination = response?.pagination || null;
+
+      // Update hasMore based on pagination
+      const totalPages = response?.pagination?.pages;
+      const currentPage = response?.pagination?.page;
+      if (totalPages != null && currentPage != null) {
+        this.hasMore = currentPage < totalPages;
+      } else {
+        // Fallback: if fewer than limit returned, assume no more
+        this.hasMore = incoming.length === this.limit;
+      }
+
+      // Increment page for next fetch
+      this.page += 1;
+      this.isLoading = false;
+      // Use setTimeout to allow DOM to update before checking content height
+      setTimeout(() => {
+        this.maybeLoadMoreOnShortContent();
+      }, 100);
+    }, (error:any) => {
       console.error(error);
-    })
+      this.isLoading = false;
+    });
   }
 
   editBlog(blog:any) {
@@ -108,6 +137,25 @@ export class LandingComponent implements OnInit {
     }
     else{
       this.router.navigate([`user/${this.userInfo.data._id}/blog/${blog._id}`]);
+    }
+  }
+
+  // Scroll handling for infinite load
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const fullHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+    if ((scrollTop + viewportHeight) >= (fullHeight - this.bottomThreshold)) {
+      this.loadNextPage();
+    }
+  }
+
+  private maybeLoadMoreOnShortContent() {
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const fullHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+    if (fullHeight <= viewportHeight + this.bottomThreshold && this.hasMore && !this.isLoading) {
+      this.loadNextPage();
     }
   }
 }
