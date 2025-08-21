@@ -323,3 +323,31 @@
   align-items: center;
   padding: 16px 0 32px 0;
 }
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: black !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-outline-thick {
+  color: black !important;
+}
+
+.mat-form-field-outline-thick {
+  color: black !important;
+}
+
+::ng-deep {
+  .mat-form-field.mat-focused {
+    .mat-form-field-label {
+      color: black !important;
+    }
+
+    .mat-form-field-outline-thick {
+      color: black !important;
+    }
+  }
+
+  .mat-form-field-outline-thick {
+    color: black !important;
+  }
+}

@@ -17,7 +17,7 @@ import {BlogService} from '../service/blog.service';
 import {MatTooltip} from '@angular/material/tooltip';
 import {Router} from '@angular/router';
 import {MatInput} from '@angular/material/input';
-
+import {MatInputModule} from '@angular/material/input';
 @Component({
   selector: 'app-landing',
   imports: [
@@ -34,6 +34,7 @@ import {MatInput} from '@angular/material/input';
     MatDialogModule,
     MatTooltip,
     MatInput,
+    MatInputModule
   ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
