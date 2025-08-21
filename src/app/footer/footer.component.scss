@@ -16,6 +16,17 @@
     list-style: none;
   }
 
+  /* Add aura effect to social media icons on hover */
+  ul li i:hover {
+    text-shadow:
+      0 0 6px  #7f5cff,
+      0 0 12px #7f5cff,
+      0 0 24px #7f5cff,
+      0 0 48px #b388ff; /* layered for soft aura */
+    cursor: pointer;
+    transition: text-shadow 0.3s ease; /* smooth transition */
+  }
+
   /* Responsive adjustments */
   @media (max-width: 768px) {
     ul {
