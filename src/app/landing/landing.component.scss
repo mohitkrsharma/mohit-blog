@@ -200,7 +200,38 @@
   min-height: 4rem;
   display: flex;
   align-items: flex-start;
+  padding: 1.6rem; /* Ensure consistent padding */
+  overflow: hidden; /* Prevent overflow from header */
 }
+/* Override Angular Material's default mat-card-header layout */
+.example-card mat-card-header .mat-mdc-card-header-text {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure the title container takes full width */
+.example-card mat-card-header .mdc-card__primary-action {
+  width: 100%;
+  padding: 0;
+}
+
+.blog-card-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  height: 2.8em;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
 .example-card mat-card-content {
   flex-grow: 1;
 }

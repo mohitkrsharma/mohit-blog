@@ -11,7 +11,7 @@
     <div class="col-md-3 col-lg-3" *ngFor="let blog of blogs?.data">
       <mat-card class="example-card" appearance="outlined">
         <mat-card-header>
-          <mat-card-title (click)="openBlog(blog)" class="blog-card-title">{{ blog.title }}</mat-card-title>
+          <mat-card-title (click)="openBlog(blog)" class="blog-card-title"><span>{{ blog.title }}</span></mat-card-title>
         </mat-card-header>
         <div class="image-wrapper skeleton">
           <img mat-card-image [src]="blog.featuredImage" [alt]="blog.title || 'Blog image'" loading="lazy" decoding="async">
