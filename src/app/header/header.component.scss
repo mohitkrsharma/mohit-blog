@@ -2,13 +2,19 @@
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
-  background-color: #27282c;
+  background-color: #000000;
 }
 .blog-website-name{
   font-size: 3rem;
   font-weight:900;
   font-family: 'Merriweather', serif;
   color: #ffffff;
+  text-shadow:
+    0 0 6px  #7f5cff,
+    0 0 12px #7f5cff,
+    0 0 24px #7f5cff,
+    0 0 48px #b388ff; /* layered for soft aura */
+  background:#000000; /* just for contrast */
 }
 .person{
   color: #ffffff;

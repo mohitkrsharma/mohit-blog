@@ -1,5 +1,5 @@
 .footer-section{
-  background-color: #27282c;
+  background-color: #000000;
   padding-bottom: 2rem; /* Add padding to the bottom */
   width: 100%; /* Ensure footer takes full width */
   h2,hr,i{
@@ -49,6 +49,12 @@
   font-weight: 300;
   padding: 1rem 1rem 0; /* Add padding for better spacing */
   margin-bottom: 0; /* Remove bottom margin to prevent extra space */
+  text-shadow:
+    0 0 6px  #7f5cff,
+    0 0 12px #7f5cff,
+    0 0 24px #7f5cff,
+    0 0 48px #b388ff; /* layered for soft aura */
+  background:#000000; /* just for contrast */
 
   /* Responsive adjustments */
   @media (max-width: 480px) {
