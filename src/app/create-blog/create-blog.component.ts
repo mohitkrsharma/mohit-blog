@@ -7,7 +7,7 @@ import {NgIf} from '@angular/common';
 import {MatIcon} from '@angular/material/icon';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {BlogService} from '../service/blog.service';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-create-blog',
   imports: [
@@ -26,14 +26,17 @@ export class CreateBlogComponent implements OnInit{
   pageName!: string;
   previewUrl: string | ArrayBuffer | null = null;
   errorMessage = '';
+  blogId: string = '';
   createEditBlogForm!: FormGroup;
   constructor(private toastr: ToastrService,private router: Router,
               private snackBar: MatSnackBar,private fb: FormBuilder,
-              private blogService: BlogService) {
+              private blogService: BlogService,
+              private route: ActivatedRoute) {
     this.createEditBlogForm = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(60)]],
       content: ['', [Validators.required, Validators.maxLength(2000)]]
     });
+    this.blogId = this.route.snapshot.paramMap.get('blog-id') || '';
   }
 
   ngOnInit(): void {
@@ -42,6 +45,7 @@ export class CreateBlogComponent implements OnInit{
       this.pageName = 'create-blog';
     } else if (currentUrl.includes('edit-blog')) {
       this.pageName = 'edit-blog';
+      this.getBlogContent(this.blogId);
     }
     else {
       this.pageName = 'create-blog';
@@ -72,9 +76,15 @@ export class CreateBlogComponent implements OnInit{
     }
   }
 
-  editBlog() {
+  updateBlog() {
     if (this.createEditBlogForm.valid) {
-      this.toastr.success('Success!', 'Blog edited successfully!');
+      this.blogService.updateBlogById(this.blogId, this.createEditBlogForm.value).subscribe((response: any) => {
+        this.toastr.success('Success!', 'Blog edited successfully!');
+        this.router.navigate(['/']);
+      },(error:any)=>{
+        console.error(error);
+        this.toastr.error('Error!', error?.error?.message || 'Something went wrong');
+      })
     } else {
       this.snackBar.open('Please check your input and try again', 'Close', {duration: 3000});
     }
@@ -82,5 +92,22 @@ export class CreateBlogComponent implements OnInit{
 
   navigateToLanding() {
     this.router.navigate(['/']);
+  }
+
+  getBlogContent(blogId: string) {
+    this.blogService.getBlogById(blogId).subscribe(
+      (response: any) => {
+        const data = response?.data || response; // support either shape
+        if (data) {
+          this.createEditBlogForm.patchValue({
+            title: data.title ?? '',
+            content: data.content ?? ''
+          });
+        }
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
   }
 }
