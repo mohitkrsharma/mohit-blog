@@ -52,7 +52,7 @@ export class ResetPasswordComponent implements OnInit {
             this.resetForm.get('email')?.setValue(email);
             this.loadingToken = false;
           },
-          error: (err: any) => {
+          error: () => {
             this.loadingToken = false;
             this.toastr.error('Invalid or expired reset link');
             this.router.navigate(['/login']);

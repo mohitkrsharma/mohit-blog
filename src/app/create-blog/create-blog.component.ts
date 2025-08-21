@@ -24,8 +24,6 @@ export class CreateBlogComponent implements OnInit{
   title: any;
   content: any;
   pageName!: string;
-  previewUrl: string | ArrayBuffer | null = null;
-  errorMessage = '';
   blogId: string = '';
   createEditBlogForm!: FormGroup;
   constructor(private toastr: ToastrService,private router: Router,
@@ -59,7 +57,7 @@ export class CreateBlogComponent implements OnInit{
         title: this.createEditBlogForm.value.title,
         content: this.createEditBlogForm.value.content
       }
-      this.blogService.createBlog(payload).subscribe((response: any) => {
+      this.blogService.createBlog(payload).subscribe(() => {
         this.toastr.success('Success!', 'Blog created successfully!');
         setTimeout(() => {
           this.createEditBlogForm.reset();
@@ -78,7 +76,7 @@ export class CreateBlogComponent implements OnInit{
 
   updateBlog() {
     if (this.createEditBlogForm.valid) {
-      this.blogService.updateBlogById(this.blogId, this.createEditBlogForm.value).subscribe((response: any) => {
+      this.blogService.updateBlogById(this.blogId, this.createEditBlogForm.value).subscribe(() => {
         this.toastr.success('Success!', 'Blog edited successfully!');
         this.router.navigate(['/']);
       },(error:any)=>{
