@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import {MatToolbar} from '@angular/material/toolbar';
 import {MatIcon} from '@angular/material/icon';
 import {MatButton} from '@angular/material/button';
-import {NgIf} from '@angular/common';
+
 import {MatTooltip} from '@angular/material/tooltip';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 
@@ -15,12 +15,11 @@ import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
     MatToolbar,
     MatIcon,
     MatButton,
-    NgIf,
     MatTooltip,
     MatMenu,
     MatMenuTrigger,
     MatMenuItem
-  ],
+],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

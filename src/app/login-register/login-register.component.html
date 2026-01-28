@@ -1,158 +1,175 @@
 <div class="container-fluid">
   <div class="login-div">
-    <form [formGroup]="loginForm" (ngSubmit)="authenticate()" class="login-form" *ngIf="pageName === 'login'">
-      <h2 class="login-register-h2">Login</h2>
-      <div class="form-group">
-        <div class="input-wrapper">
-          <i class="fas fa-user icon"></i>
-          <input
-            type="email"
-            formControlName="email"
-            placeholder="Email"
-            class="form-control"
-            autocomplete="off"
-          />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-wrapper">
-          <i class="fas fa-lock icon"></i>
-          <input
-            type="password"
-            formControlName="password"
-            placeholder="Password"
-            class="form-control"
-            autocomplete="off"
-          />
-        </div>
-      </div>
-      <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
-      <div class="register-forgot-container">
-        <small class="register-p" (click)="register()">Don't have an account? Register</small>
-        <span class="register-p"><small><a (click)="forgotPassword()">Forgot Password?</a></small></span>
-      </div>
-    </form>
-
-    <form [formGroup]="registrationForm" (ngSubmit)="registerUser()" class="login-form" *ngIf="pageName === 'register'">
-      <h2 class="login-register-h2">Register</h2>
-      <div class="form-group">
-        <div class="input-wrapper">
-          <input
-            type="text"
-            formControlName="firstName"
-            placeholder="First Name"
-            class="form-control-padding"
-            autocomplete="off"
-          />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-wrapper">
-          <input
-            type="text"
-            formControlName="lastName"
-            placeholder="Last Name"
-            class="form-control-padding"
-            autocomplete="off"
-          />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-wrapper">
-          <input
-            type="text"
-            formControlName="email"
-            placeholder="Email"
-            class="form-control-padding"
-            autocomplete="off"
-          />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-wrapper">
-          <input
-            type="text"
-            formControlName="reg_re_email"
-            placeholder="Re-enter Email"
-            class="form-control-padding"
-            autocomplete="off"
-          />
-        </div>
-      </div>
-
-      <!-- Password field -->
-      <div class="form-group">
-        <div class="input-wrapper">
-          <input
-            type="password"
-            formControlName="password"
-            placeholder="Password"
-            autocomplete="off"
-            class="form-control-padding"
-            [class.error]="hasPasswordError('required') || hasPasswordError('minLength') || hasPasswordError('uppercase') || hasPasswordError('lowercase') || hasPasswordError('number') || hasPasswordError('specialChar') || hasPasswordError('weakPassword')"
-          />
-        </div>
-
-        <!-- Password strength indicator -->
-        <div class="password-strength" *ngIf="registrationForm.get('password')?.value">
-          <div class="strength-bar">
-            <div class="strength-fill" [style.width.%]="getPasswordStrength()"
-                 [ngClass]="'strength-' + getPasswordStrengthLabel().toLowerCase()"></div>
+    @if (pageName === 'login') {
+      <form [formGroup]="loginForm" (ngSubmit)="authenticate()" class="login-form">
+        <h2 class="login-register-h2">Login</h2>
+        <div class="form-group">
+          <div class="input-wrapper">
+            <i class="fas fa-user icon"></i>
+            <input
+              type="email"
+              formControlName="email"
+              placeholder="Email"
+              class="form-control"
+              autocomplete="off"
+              />
+            </div>
           </div>
-          <span class="strength-text">{{ getPasswordStrengthLabel() }}</span>
-        </div>
+          <div class="form-group">
+            <div class="input-wrapper">
+              <i class="fas fa-lock icon"></i>
+              <input
+                type="password"
+                formControlName="password"
+                placeholder="Password"
+                class="form-control"
+                autocomplete="off"
+                />
+              </div>
+            </div>
+            <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
+            <div class="register-forgot-container">
+              <small class="register-p" (click)="register()">Don't have an account? Register</small>
+              <span class="register-p"><small><a (click)="forgotPassword()">Forgot Password?</a></small></span>
+            </div>
+          </form>
+        }
 
-        <!-- Password validation errors -->
-        <div class="error-messages" *ngIf="registrationForm.get('password')?.touched && registrationForm.get('password')?.errors">
-          <small *ngIf="hasPasswordError('required')" class="error-text">Password is required</small>
-          <small *ngIf="hasPasswordError('minLength')" class="error-text">Password must be at least 8 characters</small>
-          <small *ngIf="hasPasswordError('uppercase')" class="error-text">Must contain at least one uppercase letter</small>
-          <small *ngIf="hasPasswordError('lowercase')" class="error-text">Must contain at least one lowercase letter</small>
-          <small *ngIf="hasPasswordError('number')" class="error-text">Must contain at least one number</small>
-          <small *ngIf="hasPasswordError('specialChar')" class="error-text">Must contain at least one special character</small>
-          <small *ngIf="hasPasswordError('weakPassword')" class="error-text">Password is too common, please choose a stronger one</small>
-        </div>
-      </div>
+        @if (pageName === 'register') {
+          <form [formGroup]="registrationForm" (ngSubmit)="registerUser()" class="login-form">
+            <h2 class="login-register-h2">Register</h2>
+            <div class="form-group">
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  formControlName="firstName"
+                  placeholder="First Name"
+                  class="form-control-padding"
+                  autocomplete="off"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-wrapper">
+                  <input
+                    type="text"
+                    formControlName="lastName"
+                    placeholder="Last Name"
+                    class="form-control-padding"
+                    autocomplete="off"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-wrapper">
+                    <input
+                      type="text"
+                      formControlName="email"
+                      placeholder="Email"
+                      class="form-control-padding"
+                      autocomplete="off"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-wrapper">
+                      <input
+                        type="text"
+                        formControlName="reg_re_email"
+                        placeholder="Re-enter Email"
+                        class="form-control-padding"
+                        autocomplete="off"
+                        />
+                      </div>
+                    </div>
+                    <!-- Password field -->
+                    <div class="form-group">
+                      <div class="input-wrapper">
+                        <input
+                          type="password"
+                          formControlName="password"
+                          placeholder="Password"
+                          autocomplete="off"
+                          class="form-control-padding"
+                          [class.error]="hasPasswordError('required') || hasPasswordError('minLength') || hasPasswordError('uppercase') || hasPasswordError('lowercase') || hasPasswordError('number') || hasPasswordError('specialChar') || hasPasswordError('weakPassword')"
+                          />
+                        </div>
+                        <!-- Password strength indicator -->
+                        @if (registrationForm.get('password')?.value) {
+                          <div class="password-strength">
+                            <div class="strength-bar">
+                              <div class="strength-fill" [style.width.%]="getPasswordStrength()"
+                              [ngClass]="'strength-' + getPasswordStrengthLabel().toLowerCase()"></div>
+                            </div>
+                            <span class="strength-text">{{ getPasswordStrengthLabel() }}</span>
+                          </div>
+                        }
+                        <!-- Password validation errors -->
+                        @if (registrationForm.get('password')?.touched && registrationForm.get('password')?.errors) {
+                          <div class="error-messages">
+                            @if (hasPasswordError('required')) {
+                              <small class="error-text">Password is required</small>
+                            }
+                            @if (hasPasswordError('minLength')) {
+                              <small class="error-text">Password must be at least 8 characters</small>
+                            }
+                            @if (hasPasswordError('uppercase')) {
+                              <small class="error-text">Must contain at least one uppercase letter</small>
+                            }
+                            @if (hasPasswordError('lowercase')) {
+                              <small class="error-text">Must contain at least one lowercase letter</small>
+                            }
+                            @if (hasPasswordError('number')) {
+                              <small class="error-text">Must contain at least one number</small>
+                            }
+                            @if (hasPasswordError('specialChar')) {
+                              <small class="error-text">Must contain at least one special character</small>
+                            }
+                            @if (hasPasswordError('weakPassword')) {
+                              <small class="error-text">Password is too common, please choose a stronger one</small>
+                            }
+                          </div>
+                        }
+                      </div>
+                      <!-- Re-enter Password field -->
+                      <div class="form-group">
+                        <div class="input-wrapper">
+                          <input
+                            type="password"
+                            formControlName="reg_re_password"
+                            placeholder="Re-enter Password"
+                            class="form-control-padding"
+                            [class.error]="passwordsMismatch"
+                            />
+                          </div>
+                          <!-- Password match error -->
+                          @if (passwordsMismatch) {
+                            <div class="error-messages">
+                              <small class="error-text">Passwords do not match</small>
+                            </div>
+                          }
+                        </div>
+                        <button type="submit" [disabled]="registrationForm.invalid || isSubmitting">Create Account</button>
+                        <p class="register-p"><small>Already have an account? <a (click)="login()">Login</a></small></p>
+                      </form>
+                    }
 
-      <!-- Re-enter Password field -->
-      <div class="form-group">
-        <div class="input-wrapper">
-          <input
-            type="password"
-            formControlName="reg_re_password"
-            placeholder="Re-enter Password"
-            class="form-control-padding"
-            [class.error]="passwordsMismatch"
-          />
-        </div>
-
-        <!-- Password match error -->
-        <div class="error-messages" *ngIf="passwordsMismatch">
-          <small class="error-text">Passwords do not match</small>
-        </div>
-      </div>
-      <button type="submit" [disabled]="registrationForm.invalid || isSubmitting">Create Account</button>
-      <p class="register-p"><small>Already have an account? <a (click)="login()">Login</a></small></p>
-    </form>
-
-    <form [formGroup]="forgotPasswordForm" (ngSubmit)="onForgotPasswordSubmit()" class="login-form" *ngIf="pageName === 'forgot-password'">
-      <h2 class="login-register-h2">Forgot Password</h2>
-      <div class="form-group">
-        <div class="input-wrapper">
-          <i class="fas fa-user icon"></i>
-          <input
-            type="email"
-            formControlName="f_email"
-            placeholder="Email"
-            class="form-control"
-          />
-        </div>
-      </div>
-      <button type="submit" [disabled]="forgotPasswordForm.invalid">Submit</button>
-    </form>
-  </div>
-</div>
+                    @if (pageName === 'forgot-password') {
+                      <form [formGroup]="forgotPasswordForm" (ngSubmit)="onForgotPasswordSubmit()" class="login-form">
+                        <h2 class="login-register-h2">Forgot Password</h2>
+                        <div class="form-group">
+                          <div class="input-wrapper">
+                            <i class="fas fa-user icon"></i>
+                            <input
+                              type="email"
+                              formControlName="f_email"
+                              placeholder="Email"
+                              class="form-control"
+                              />
+                            </div>
+                          </div>
+                          <button type="submit" [disabled]="forgotPasswordForm.invalid">Submit</button>
+                        </form>
+                      }
+                    </div>
+                  </div>

@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideToastr } from 'ngx-toastr';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { LandingComponent } from './landing.component';
 
@@ -8,9 +11,14 @@ describe('LandingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LandingComponent]
+      imports: [LandingComponent],
+      providers: [
+        provideHttpClient(),
+        provideToastr(),
+        provideAnimations()
+      ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(LandingComponent);
     component = fixture.componentInstance;

@@ -5,7 +5,8 @@
       <span class="back">Back</span>
     </button>
   </div>
-  <h1 class="mb-4 blog-title-h1">{{blogData?.title}}</h1>
+  @if (blogData) {
+  <h1 class="mb-4 blog-title-h1">{{blogData.title}}</h1>
   <div class="blog-author-div mb-3">
     <img src="{{blogData.author.profilePic}}" alt="Profile Pic" class="profile-pic">
     <div>
@@ -17,8 +18,10 @@
     <img mat-card-image src="{{blogData.featuredImage}}" class="blog-content-image" alt="blog-content-image">
   </div>
   <p class="blog-content-p" [innerHTML]="blogData.content | paragraph"></p>
-</div>
-<div class="no-blog-data-div" *ngIf="!blogData">
-  <mat-icon class="visible-icon">visibility</mat-icon>
-  <p class="no-blogs-p">Unable to display blog</p>
+  } @else {
+  <div class="no-blog-data-div">
+    <mat-icon class="visible-icon">visibility</mat-icon>
+    <p class="no-blogs-p">Unable to display blog</p>
+  </div>
+  }
 </div>

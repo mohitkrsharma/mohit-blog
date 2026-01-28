@@ -3,7 +3,7 @@ import {ToastrService} from 'ngx-toastr';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
 import {Router} from '@angular/router';
-import {NgIf} from '@angular/common';
+
 import {MatIcon} from '@angular/material/icon';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {BlogService} from '../service/blog.service';
@@ -13,10 +13,9 @@ import { ActivatedRoute } from '@angular/router';
   imports: [
     FormsModule,
     MatButton,
-    NgIf,
     MatIcon,
     ReactiveFormsModule
-  ],
+],
   templateUrl: './create-blog.component.html',
   styleUrl: './create-blog.component.scss'
 })

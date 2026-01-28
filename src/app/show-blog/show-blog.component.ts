@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BlogService} from '../service/blog.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {DatePipe, NgIf} from '@angular/common';
+import { DatePipe } from '@angular/common';
 import {MatIcon} from '@angular/material/icon';
 import {ParagraphPipe} from '../pipes/paragraph.pipe';
 import {MatButton} from '@angular/material/button';
@@ -12,12 +12,11 @@ import {MatCardImage} from '@angular/material/card';
   selector: 'app-show-blog',
   imports: [
     MatIcon,
-    NgIf,
     ParagraphPipe,
     MatButton,
     MatCardImage,
     DatePipe
-  ],
+],
   templateUrl: './show-blog.component.html',
   styleUrl: './show-blog.component.scss'
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors} from '@angular/forms';
 import {Router} from '@angular/router';
-import {NgIf} from '@angular/common';
+
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthService} from '../service/auth.service';
 import {ToastrService} from 'ngx-toastr';
@@ -11,9 +11,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-login-register',
   imports: [
     ReactiveFormsModule,
-    NgIf,
     CommonModule
-  ],
+],
   templateUrl: './login-register.component.html',
   styleUrl: './login-register.component.scss'
 })

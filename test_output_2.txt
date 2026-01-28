@@ -1,0 +1,95 @@
+[33mΓ¥»[39m Building...
+[32mΓ£ö[39m Building...
+[1mInitial chunk files[22m                                               [2m | [22m[1mNames[22m                                                          [2m | [22m [1mRaw size[22m
+[32mchunk-MFSGURGE.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m  [36m1.12 MB[39m[2m | [22m
+[32mchunk-S3AVGDSM.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m  [36m1.07 MB[39m[2m | [22m
+[32mpolyfills.js[39m                                                      [2m | [22m[2mpolyfills[22m                                                      [2m | [22m[36m998.98 kB[39m[2m | [22m
+[32mstyles.css[39m                                                        [2m | [22m[2mstyles[22m                                                         [2m | [22m[36m514.27 kB[39m[2m | [22m
+[32mchunk-3E6T6QYB.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m[36m265.36 kB[39m[2m | [22m
+[32mchunk-TAISQFT6.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m[36m224.41 kB[39m[2m | [22m
+[32mchunk-BMI7VBOJ.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m[36m224.29 kB[39m[2m | [22m
+[32mchunk-AXUJP7G7.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m[36m221.02 kB[39m[2m | [22m
+[32mspec-app-landing-landing.component.spec.js[39m                        [2m | [22m[2mspec-app-landing-landing.component.spec[22m                        [2m | [22m[36m188.95 kB[39m[2m | [22m
+[32mchunk-2VV4NSL6.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m[36m178.25 kB[39m[2m | [22m
+[32mchunk-JUCNFVIL.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m[36m172.63 kB[39m[2m | [22m
+[32mscripts.js[39m                                                        [2m | [22m[2mscripts[22m                                                        [2m | [22m[36m108.06 kB[39m[2m | [22m
+[32mchunk-LBM67W53.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m [36m84.22 kB[39m[2m | [22m
+[32mchunk-ZWPFNTP2.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m [36m78.31 kB[39m[2m | [22m
+[32mchunk-LQVETJYR.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m [36m70.36 kB[39m[2m | [22m
+[32mjasmine-cleanup-1.js[39m                                              [2m | [22m[2mjasmine-cleanup-1[22m                                              [2m | [22m [36m67.20 kB[39m[2m | [22m
+[32mchunk-SL3CYJ7I.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m [36m37.56 kB[39m[2m | [22m
+[32mchunk-723DGVS2.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m [36m37.15 kB[39m[2m | [22m
+[32mchunk-HHTJXW5J.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m [36m29.93 kB[39m[2m | [22m
+[32mchunk-I2CK4LCO.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m [36m28.98 kB[39m[2m | [22m
+[32mtest_main.js[39m                                                      [2m | [22m[2mtest_main[22m                                                      [2m | [22m [36m22.23 kB[39m[2m | [22m
+[32mspec-app-login-register-login-register.component.spec.js[39m          [2m | [22m[2mspec-app-login-register-login-register.component.spec[22m          [2m | [22m [36m22.10 kB[39m[2m | [22m
+[32mchunk-BRNHCSYX.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m [36m18.88 kB[39m[2m | [22m
+[32mspec-app-create-blog-create-blog.component.spec.js[39m                [2m | [22m[2mspec-app-create-blog-create-blog.component.spec[22m                [2m | [22m  [36m9.37 kB[39m[2m | [22m
+[32mspec-app-show-blog-show-blog.component.spec.js[39m                    [2m | [22m[2mspec-app-show-blog-show-blog.component.spec[22m                    [2m | [22m  [36m6.72 kB[39m[2m | [22m
+[32mchunk-YFCGYO6H.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m  [36m6.24 kB[39m[2m | [22m
+[32mchunk-OJROMRAB.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m  [36m5.77 kB[39m[2m | [22m
+[32mchunk-MOM4H2SQ.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m  [36m4.09 kB[39m[2m | [22m
+[32mspec-app-app.component.spec.js[39m                                    [2m | [22m[2mspec-app-app.component.spec[22m                                    [2m | [22m  [36m3.35 kB[39m[2m | [22m
+[32mchunk-FERX4SMV.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m  [36m3.02 kB[39m[2m | [22m
+[32mchunk-SPGLRWF7.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m  [36m1.90 kB[39m[2m | [22m
+[32mspec-app-confirmation-dialog-confirmation-dialog.component.spec.js[39m[2m | [22m[2mspec-app-confirmation-dialog-confirmation-dialog.component.spec[22m[2m | [22m  [36m1.63 kB[39m[2m | [22m
+[32mspec-app-header-header.component.spec.js[39m                          [2m | [22m[2mspec-app-header-header.component.spec[22m                          [2m | [22m  [36m1.39 kB[39m[2m | [22m
+[32mspec-app-footer-footer.component.spec.js[39m                          [2m | [22m[2mspec-app-footer-footer.component.spec[22m                          [2m | [22m  [36m1.06 kB[39m[2m | [22m
+[32mspec-app-guard-auth.guard.spec.js[39m                                 [2m | [22m[2mspec-app-guard-auth.guard.spec[22m                                 [2m | [22m  [36m1.03 kB[39m[2m | [22m
+[32mchunk-XYKNVIBC.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m[36m672 bytes[39m[2m | [22m
+[32mspec-app-service-auth.service.spec.js[39m                             [2m | [22m[2mspec-app-service-auth.service.spec[22m                             [2m | [22m[36m665 bytes[39m[2m | [22m
+[32mspec-app-service-blog.service.spec.js[39m                             [2m | [22m[2mspec-app-service-blog.service.spec[22m                             [2m | [22m[36m665 bytes[39m[2m | [22m
+[32mjasmine-cleanup-0.js[39m                                              [2m | [22m[2mjasmine-cleanup-0[22m                                              [2m | [22m[36m519 bytes[39m[2m | [22m
+[32mchunk-3VWDWC2T.js[39m                                                 [2m | [22m[2m-[22m                                                              [2m | [22m[36m429 bytes[39m[2m | [22m
+[32mspec-app-pipes-paragraph.pipe.spec.js[39m                             [2m | [22m[2mspec-app-pipes-paragraph.pipe.spec[22m                             [2m | [22m[36m413 bytes[39m[2m | [22m
+
+[1m [22m                                                                 [2m | [22m[1mInitial total[22m                                                  [2m | [22m  [1m5.83 MB[22m
+
+Application bundle generation complete. [3.397 seconds] - 2026-01-28T18:38:14.944Z
+
+[32m29 01 2026 00:08:15.226:INFO [karma-server]: [39mKarma v6.4.4 server started at http://localhost:9877/
+[32m29 01 2026 00:08:15.228:INFO [launcher]: [39mLaunching browsers ChromeHeadless with concurrency unlimited
+[32m29 01 2026 00:08:15.237:INFO [launcher]: [39mStarting browser ChromeHeadless
+[32m29 01 2026 00:08:16.452:INFO [Chrome Headless 144.0.0.0 (Windows 10)]: [39mConnected on socket 3oA3ptZgSlY5fVwOAAAB with id 62228250
+Chrome Headless 144.0.0.0 (Windows 10): Executed 0 of 13[32m SUCCESS[39m (0 secs / 0 secs)
+[1A[2KChrome Headless 144.0.0.0 (Windows 10): Executed 1 of 13[32m SUCCESS[39m (0 secs / 0.003 secs)
+[1A[2KChrome Headless 144.0.0.0 (Windows 10): Executed 2 of 13[32m SUCCESS[39m (0 secs / 0.051 secs)
+[1A[2KChrome Headless 144.0.0.0 (Windows 10): Executed 3 of 13[32m SUCCESS[39m (0 secs / 0.054 secs)
+[1A[2KChrome Headless 144.0.0.0 (Windows 10): Executed 4 of 13[32m SUCCESS[39m (0 secs / 0.123 secs)
+[1A[2KChrome Headless 144.0.0.0 (Windows 10): Executed 5 of 13[32m SUCCESS[39m (0 secs / 0.126 secs)
+[1A[2KChrome Headless 144.0.0.0 (Windows 10): Executed 6 of 13[32m SUCCESS[39m (0 secs / 0.134 secs)
+[1A[2KChrome Headless 144.0.0.0 (Windows 10): Executed 7 of 13[32m SUCCESS[39m (0 secs / 0.135 secs)
+[1A[2KChrome Headless 144.0.0.0 (Windows 10): Executed 8 of 13[32m SUCCESS[39m (0 secs / 0.144 secs)
+[1A[2K[31mChrome Headless 144.0.0.0 (Windows 10) CreateBlogComponent should create FAILED[39m
+	╔╡NotFound: NG0201: No provider found for `ActivatedRoute`. Source: Standalone[CreateBlogComponent2]. Find more at https://v21.angular.dev/errors/NG0201
+	error properties: Object({ code: -201, ngErrorCode: -201, ngErrorMessage: 'No provider found for `ActivatedRoute`.', ngTokenPath: [ 'ActivatedRoute' ] })
+	╔╡NotFound: NG0201: No provider found for `ActivatedRoute`. Source: Standalone[CreateBlogComponent2]. Find more at https://v21.angular.dev/errors/NG0201
+	    at createRuntimeError (node_modules/@angular/core/fesm2022/_untracked-chunk.mjs:600:17)
+	    at NullInjector.get (node_modules/@angular/core/fesm2022/_untracked-chunk.mjs:881:21)
+	    at R3Injector.get (node_modules/@angular/core/fesm2022/_untracked-chunk.mjs:1206:27)
+	    at R3Injector.get (node_modules/@angular/core/fesm2022/_untracked-chunk.mjs:1206:27)
+	    at R3Injector.get (node_modules/@angular/core/fesm2022/_untracked-chunk.mjs:1206:27)
+	    at ChainedInjector.get (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:7493:32)
+	    at lookupTokenUsingModuleInjector (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:890:31)
+	    at getOrCreateInjectable (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:913:10)
+	    at ╔╡╔╡directiveInject (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:7527:17)
+	    at NodeInjectorFactory.CreateBlogComponent2_Factory [as factory] (ng:///CreateBlogComponent2/╔╡fac.js:7:7)
+Chrome Headless 144.0.0.0 (Windows 10): Executed 9 of 13[31m (1 FAILED)[39m (0 secs / 0.356 secs)
+[1A[2K[31mChrome Headless 144.0.0.0 (Windows 10) ShowBlogComponent should create FAILED[39m
+	TypeError: Cannot read properties of undefined (reading 'author')
+	    at ShowBlogComponent2_Template (ng:///ShowBlogComponent2.js:58:67)
+	    at executeTemplate (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:4834:5)
+	    at refreshView (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5504:7)
+	    at detectChangesInView (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5644:5)
+	    at detectChangesInViewIfAttached (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5627:3)
+	    at detectChangesInComponent (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5618:5)
+	    at detectChangesInChildComponents (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5666:5)
+	    at refreshView (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5546:7)
+	    at detectChangesInView (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5644:5)
+	    at detectChangesInViewWhileDirty (node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs:5453:5)
+Chrome Headless 144.0.0.0 (Windows 10): Executed 10 of 13[31m (2 FAILED)[39m (0 secs / 0.379 secs)
+[1A[2KChrome Headless 144.0.0.0 (Windows 10): Executed 11 of 13[31m (2 FAILED)[39m (0 secs / 0.393 secs)
+[1A[2KChrome Headless 144.0.0.0 (Windows 10): Executed 12 of 13[31m (2 FAILED)[39m (0 secs / 0.399 secs)
+[1A[2KChrome Headless 144.0.0.0 (Windows 10): Executed 13 of 13[31m (2 FAILED)[39m (0 secs / 0.464 secs)
+[1A[2KChrome Headless 144.0.0.0 (Windows 10): Executed 13 of 13[31m (2 FAILED)[39m (0.495 secs / 0.464 secs)
+[31mTOTAL: 2 FAILED, 11 SUCCESS[39m

@@ -1,27 +1,32 @@
 <mat-toolbar class="main-nav">
   <span class="blog-website-name" (click)="navigateToLanding()">Mohit Blogs</span>
   <div class="login-div">
-    <button mat-button class="mat-primary" *ngIf="userData" (click)="navigateToCreateBlog()">
-      <mat-icon class="add-icon">add</mat-icon>
-      <span class="login">Add Blog</span></button>
-    <button mat-button class="mat-primary" *ngIf="!userData"><mat-icon class="person">person</mat-icon><span class="login" (click)="login()">Login</span></button>
+    @if (userData) {
+      <button mat-button class="mat-primary" (click)="navigateToCreateBlog()">
+        <mat-icon class="add-icon">add</mat-icon>
+        <span class="login">Add Blog</span></button>
+      }
+      @if (!userData) {
+        <button mat-button class="mat-primary"><mat-icon class="person">person</mat-icon><span class="login" (click)="login()">Login</span></button>
+      }
 
-    <!-- Updated avatar section with dropdown menu -->
-    <div class="user-avatar-section" *ngIf="userData">
-      <button mat-button [matMenuTriggerFor]="userMenu" class="user-avatar-button">
-        <img [src]="userData.data.profilePic" alt="User Image" class="user-img" width="25px" height="auto" matTooltip="{{userData.data.firstName + ' ' + userData.data.lastName}}">
-      </button>
-
-      <mat-menu #userMenu="matMenu" class="reset-pwd-logout-menu">
-        <button mat-menu-item (click)="resetPassword()">
-          <mat-icon>lock_reset</mat-icon>
-          <span>Reset Password</span>
-        </button>
-        <button mat-menu-item (click)="logout()">
-          <mat-icon>logout</mat-icon>
-          <span>Logout</span>
-        </button>
-      </mat-menu>
+      <!-- Updated avatar section with dropdown menu -->
+      @if (userData) {
+        <div class="user-avatar-section">
+          <button mat-button [matMenuTriggerFor]="userMenu" class="user-avatar-button">
+            <img [src]="userData.data.profilePic" alt="User Image" class="user-img" width="25px" height="auto" matTooltip="{{userData.data.firstName + ' ' + userData.data.lastName}}">
+          </button>
+          <mat-menu #userMenu="matMenu" class="reset-pwd-logout-menu">
+            <button mat-menu-item (click)="resetPassword()">
+              <mat-icon>lock_reset</mat-icon>
+              <span>Reset Password</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </div>
+      }
     </div>
-  </div>
-</mat-toolbar>
+  </mat-toolbar>

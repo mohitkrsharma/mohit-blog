@@ -8,46 +8,54 @@
       </mat-form-field>
     </div>
   </div>
-  <div class="row justify-content-center card-row-divs" *ngIf="blogs?.data?.length >= 0">
-    <div class="col-md-3 col-lg-3" *ngFor="let blog of blogs?.data">
-      <mat-card class="example-card" appearance="outlined">
-        <mat-card-header>
-          <mat-card-title (click)="openBlog(blog)" class="blog-card-title"><span>{{ blog.title }}</span></mat-card-title>
-        </mat-card-header>
-        <div class="image-wrapper skeleton">
-          <img mat-card-image [src]="blog.featuredImage" [alt]="blog.title || 'Blog image'" loading="lazy" decoding="async">
-        </div>
-        <mat-card-content class="blog-mat-card-content">
-          <p class="ellipsis-p">{{blog.content}}</p>
-        </mat-card-content>
-        <hr>
-        <mat-card-actions>
-          <div class="blog-user-details">
-            <img src="/dummy-user.png" alt="User Image" class="user-img">
-            <div class="user-blog-details-date">
-              <p class="mb-0 blogger-name">{{ blog.author.firstName + ' ' + blog.author.lastName }}</p>
-              <div class="date-delete-edit-div">
-                <span class="blog-date">{{blog.createdAt | date: 'dd-MMM-yyyy'}}</span>
-                <div class="icons-div" *ngIf="userInfo && userInfo.success === true && (userInfo.data.email === blog.author.email || userInfo.data.userType === 'admin')">
-                  <mat-icon class="edit-icon" (click)="editBlog(blog)" matTooltip="Edit">edit</mat-icon>
-                  <mat-icon class="delete-icon" (click)="deleteBlog(blog._id)" matTooltip="Delete">delete</mat-icon>
-                </div>
-              </div>
+  @if (blogs?.data?.length >= 0) {
+    <div class="row justify-content-center card-row-divs">
+      @for (blog of blogs?.data; track blog) {
+        <div class="col-md-3 col-lg-3">
+          <mat-card class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title (click)="openBlog(blog)" class="blog-card-title"><span>{{ blog.title }}</span></mat-card-title>
+            </mat-card-header>
+            <div class="image-wrapper skeleton">
+              <img mat-card-image [src]="blog.featuredImage" [alt]="blog.title || 'Blog image'" loading="lazy" decoding="async">
             </div>
+            <mat-card-content class="blog-mat-card-content">
+              <p class="ellipsis-p">{{blog.content}}</p>
+            </mat-card-content>
+            <hr>
+              <mat-card-actions>
+                <div class="blog-user-details">
+                  <img src="/dummy-user.png" alt="User Image" class="user-img">
+                  <div class="user-blog-details-date">
+                    <p class="mb-0 blogger-name">{{ blog.author.firstName + ' ' + blog.author.lastName }}</p>
+                    <div class="date-delete-edit-div">
+                      <span class="blog-date">{{blog.createdAt | date: 'dd-MMM-yyyy'}}</span>
+                      @if (userInfo && userInfo.success === true && (userInfo.data.email === blog.author.email || userInfo.data.userType === 'admin')) {
+                        <div class="icons-div">
+                          <mat-icon class="edit-icon" (click)="editBlog(blog)" matTooltip="Edit">edit</mat-icon>
+                          <mat-icon class="delete-icon" (click)="deleteBlog(blog._id)" matTooltip="Delete">delete</mat-icon>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+              </mat-card-actions>
+            </mat-card>
           </div>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-
-    <!-- Empty state (only when not loading and nothing loaded) -->
-    <div class="empty-blogs-div" *ngIf="!isLoading && blogs?.data?.length === 0">
-      <mat-icon class="visible-icon">visibility</mat-icon>
-      <p class="no-blogs-p">No blogs found</p>
-    </div>
-
-    <!-- Infinite scroll loader -->
-    <div class="infinite-loader" *ngIf="isLoading">
-      <span class="loader" aria-label="loading" role="status"></span>
-    </div>
+        }
+        <!-- Empty state (only when not loading and nothing loaded) -->
+        @if (!isLoading && blogs?.data?.length === 0) {
+          <div class="empty-blogs-div">
+            <mat-icon class="visible-icon">visibility</mat-icon>
+            <p class="no-blogs-p">No blogs found</p>
+          </div>
+        }
+        <!-- Infinite scroll loader -->
+        @if (isLoading) {
+          <div class="infinite-loader">
+            <span class="loader" aria-label="loading" role="status"></span>
+          </div>
+        }
+      </div>
+    }
   </div>
-</div>
