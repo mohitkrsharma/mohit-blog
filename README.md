@@ -1,6 +1,6 @@
 # Blog Frontend
 
-A modern blog application built with Angular 19, Angular Material, Bootstrap, and more. This frontend application connects to a Node.js/Express.js backend with MongoDB for data storage.
+A modern blog application built with Angular 21, Angular Material, Bootstrap, and more. This frontend application connects to a Node.js/Express.js backend with MongoDB for data storage.
 
 ## Project Overview
 
@@ -136,7 +136,7 @@ npm test
 
 ## Technologies Used
 
-- **Angular 19**: Frontend framework
+- **Angular 21**: Frontend framework
 - **Angular Material**: UI component library
 - **Bootstrap**: CSS framework for responsive design
 - **ngx-toastr**: Toast notifications
