@@ -181,13 +181,25 @@
 .blog-mat-card-content{
   padding: 0 !important;
 }
+.landing-page {
+  min-height: calc(100vh - 12rem);
+  display: flex;
+  flex-direction: column;
+}
+
 .search-row {
+  flex: 0 0 auto;
   position: sticky;
   top: 0;
   z-index: 10;
   background-color: white; /* or your background color */
   padding: 1rem 0;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* optional shadow for separation */
+}
+
+.landing-results {
+  flex: 1 1 auto;
+  width: 100%;
 }
 
 .card-row-divs{
@@ -270,6 +282,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  min-height: 30vh;
+  padding-top: 4rem;
 }
 .visible-icon,.no-blogs-p{
   color: #858585;

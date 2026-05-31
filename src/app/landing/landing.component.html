@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4 landing-page">
   <div class="row justify-content-center search-row">
     <div class="col-sm-6 col-md-6 col-lg-6 mb-4 mb-lg-0 mb-xl-4 mx-auto text-center">
       <mat-form-field class="w-100" appearance="outline">
@@ -8,8 +8,10 @@
       </mat-form-field>
     </div>
   </div>
-  @if (blogs?.data?.length > 0) {
-    <div class="row justify-content-center card-row-divs">
+
+  <div class="landing-results">
+    @if (blogs?.data?.length > 0) {
+      <div class="row justify-content-center card-row-divs">
       @for (blog of blogs?.data; track blog) {
         <div class="col-md-3 col-lg-3">
           <mat-card class="example-card" appearance="outlined">
@@ -43,19 +45,18 @@
             </mat-card>
           </div>
         }
-        <!-- Empty state (only when not loading and nothing loaded) -->
-        @if (!isLoading && blogs?.data?.length === 0) {
-          <div class="empty-blogs-div">
-            <mat-icon class="visible-icon">visibility</mat-icon>
-            <p class="no-blogs-p">No blogs found</p>
-          </div>
-        }
-        <!-- Infinite scroll loader -->
-        @if (isLoading) {
-          <div class="infinite-loader">
-            <span class="loader" aria-label="loading" role="status"></span>
-          </div>
-        }
+      </div>
+    }
+    @if (!isLoading && blogs?.data?.length === 0) {
+      <div class="empty-blogs-div">
+        <mat-icon class="visible-icon">visibility</mat-icon>
+        <p class="no-blogs-p">No blogs found</p>
+      </div>
+    }
+    @if (isLoading) {
+      <div class="infinite-loader">
+        <span class="loader" aria-label="loading" role="status"></span>
       </div>
     }
   </div>
+</div>
