@@ -1,10 +1,11 @@
 # Blog Frontend
 
-A modern blog application built with Angular 21, Angular Material, Bootstrap, and more. This frontend application connects to a Node.js/Express.js backend with MongoDB for data storage.
+A modern blog application built with Angular 22, Angular Material, Bootstrap, and more. This frontend application connects to a Node.js/Express.js backend with MongoDB for data storage.
 
 ## Project Overview
 
 This is a full-featured blog platform that allows users to:
+
 - View blog posts on the landing page
 - Search for specific blog posts
 - Create new blog posts with images
@@ -46,6 +47,7 @@ blog-frontend/
 ### Core Components
 
 #### Landing Component
+
 - **Purpose**: Displays the main page with blog posts
 - **Features**:
   - Blog post grid display
@@ -54,6 +56,7 @@ blog-frontend/
   - Edit and delete options for blog posts
 
 #### Login/Register Component
+
 - **Purpose**: Handles user authentication
 - **Features**:
   - Login form with email and password
@@ -62,6 +65,7 @@ blog-frontend/
   - Profile image upload
 
 #### Create Blog Component
+
 - **Purpose**: Allows creation and editing of blog posts
 - **Features**:
   - Blog title and content fields
@@ -69,6 +73,7 @@ blog-frontend/
   - Different modes for create and edit
 
 #### Confirmation Dialog Component
+
 - **Purpose**: Reusable dialog for confirming actions
 - **Features**:
   - Customizable title and message
@@ -77,6 +82,7 @@ blog-frontend/
 ### Core Services and Utilities
 
 #### Auth Interceptor
+
 - **Purpose**: Handles authentication for HTTP requests
 - **Features**:
   - Adds JWT token to outgoing requests
@@ -102,17 +108,21 @@ blog-frontend/
 ## Setup and Usage
 
 ### Prerequisites
+
 - Node.js (v14 or higher)
 - npm (v6 or higher)
 
 ### Installation
+
 1. Clone the repository
+
    ```
    git clone <repository-url>
    cd blog-frontend
    ```
 
 2. Install dependencies
+
    ```
    npm install
    ```
@@ -124,12 +134,15 @@ blog-frontend/
    The application will be available at `http://localhost:4200/`
 
 ### Building for Production
+
 ```
 npm run build
 ```
+
 The build artifacts will be stored in the `dist/` directory.
 
 ### Running Tests
+
 ```
 npm test
 ```
